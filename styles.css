@@ -85,7 +85,7 @@ html, body {
 .centered-text {
     font-family: 'Calibri', sans-serif;
     font-size: 11px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.74);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -281,5 +281,6 @@ footer {
 .sub-cert-list {
     margin-left: 20px;
 }
+
 
 
