@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تجميعات المواد – زيد اللحام</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0f1e; --card: #0f1a30; --card2: #0d1826;
+      --border: rgba(0,170,255,0.13); --border2: rgba(0,170,255,0.28);
+      --accent: #00aaff; --accent2: #00e5ff; --accent3: #7c3aed;
+      --text: #e8f4ff; --text2: #8baac8; --text3: #3d6080; --green: #00d4aa;
+      --amber: #f59e0b; --purple: #a78bfa; --coral: #f87171;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: linear-gradient(rgba(0,170,255,0.035) 1px,transparent 1px), linear-gradient(90deg,rgba(0,170,255,0.035) 1px,transparent 1px);
+      background-size: 44px 44px; pointer-events: none; z-index: 0;
+    }
+    .orb { position: fixed; border-radius: 50%; filter: blur(90px); opacity: 0.18; pointer-events: none; z-index: 0; }
+    .orb-1 { width:550px; height:550px; background:radial-gradient(circle,#0055bb,transparent); top:-180px; right:-120px; }
+    .orb-2 { width:420px; height:420px; background:radial-gradient(circle,#6d28d9,transparent); bottom:80px;  left:-120px; }
+
+    .wrap { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 1.25rem 5rem; }
+
+    /* ── NAV ── */
+    header { position: relative; z-index: 1; padding: 1.75rem 1.25rem 0; display: flex; justify-content: center; }
+    .top-nav { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
+    .nav-pill {
+      display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.4rem 0.9rem;
+      border-radius: 50px; border: 1px solid var(--border2); background: rgba(0,170,255,0.06);
+      color: var(--accent); text-decoration: none; font-size: 0.78rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .nav-pill:hover { background: rgba(0,170,255,0.14); color: var(--accent2); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero { text-align: center; padding: 3rem 1rem 2rem; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.32rem 0.9rem;
+      border-radius: 50px; border: 1px solid var(--border2); background: rgba(0,229,255,0.05);
+      color: var(--accent2); font-size: 0.73rem; font-weight: 600; letter-spacing: 0.05em;
+      margin-bottom: 1.25rem; font-family: 'JetBrains Mono', monospace;
+    }
+    .badge::before { content:'●'; font-size:7px; color:var(--green); animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
+    .hero h1 {
+      font-size: clamp(1.7rem,4.5vw,2.9rem); font-weight: 900; line-height: 1.2; margin-bottom: 0.25rem;
+      background: linear-gradient(135deg,#e8f4ff 0%,var(--accent) 55%,var(--accent2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero .pos { font-size: 0.85rem; color: var(--accent); font-weight: 600; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.06em; margin-bottom: 0.45rem; }
+    .hero .tag { font-size: 0.9rem; color: var(--text2); margin-bottom: 2rem; }
+    .btn-cta {
+      display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.8rem 1.75rem;
+      border-radius: 50px; background: linear-gradient(135deg,var(--accent),#0055cc);
+      color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700;
+      transition: all 0.25s; box-shadow: 0 0 22px rgba(0,170,255,0.3);
+    }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(0,170,255,0.5); }
+
+    /* ── STATS ── */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.85rem; margin-bottom: 0.5rem; }
+    .stat { background: var(--card); border: 1px solid var(--border); border-radius: 13px; padding: 1.1rem; text-align: center; }
+    .stat-n {
+      font-size: 1.5rem; font-weight: 900; font-family: 'JetBrains Mono', monospace;
+      background: linear-gradient(135deg,var(--accent),var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-l { font-size: 0.7rem; color: var(--text3); margin-top: 0.15rem; }
+
+    /* ── COMP ENG BANNER ── */
+    .comp-banner {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--card); border: 1px solid rgba(0,212,170,0.3); border-radius: 15px;
+      padding: 1.1rem 1.5rem; text-decoration: none; color: inherit; transition: all 0.22s;
+      position: relative; overflow: hidden;
+    }
+    .comp-banner::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,212,170,0.05),transparent); opacity:0; transition:opacity 0.22s; }
+    .comp-banner:hover { transform: translateY(-2px); box-shadow: 0 0 22px rgba(0,212,170,0.14); border-color: var(--green); }
+    .comp-banner:hover::before { opacity: 1; }
+    .cb-left { display: flex; align-items: center; gap: 0.85rem; }
+    .cb-icon { width:44px; height:44px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; background:rgba(0,212,170,0.09); border:1px solid rgba(0,212,170,0.22); }
+    .cb-text h3 { font-size: 0.95rem; font-weight: 700; }
+    .cb-text p  { font-size: 0.78rem; color: var(--text2); margin-top: 0.1rem; }
+    .cb-arr { font-size: 1.2rem; color: var(--green); }
+
+    /* ── SECTION DIVIDER ── */
+    .sec-label {
+      display: flex; align-items: center; gap: 0.65rem; margin: 2.5rem 0 1.2rem;
+    }
+    .sec-label::before { content:''; height:1px; flex:1; background:linear-gradient(to right,transparent,var(--border2)); }
+    .sec-label::after  { content:''; height:1px; flex:1; background:linear-gradient(to left, transparent,var(--border2)); }
+    .sec-label span { font-size:0.72rem; font-weight:700; letter-spacing:0.1em; color:var(--accent); font-family:'JetBrains Mono',monospace; white-space:nowrap; }
+
+    /* ── SEMESTER GROUP ── */
+    .semester { margin-bottom: 2rem; }
+    .semester-title {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.82rem; font-weight: 700; color: var(--text2);
+      margin-bottom: 0.9rem; padding-right: 0.25rem;
+    }
+    .semester-title .dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .dot-blue   { background: var(--accent); }
+    .dot-green  { background: var(--green); }
+    .dot-purple { background: var(--purple); }
+    .dot-amber  { background: var(--amber); }
+    .dot-coral  { background: var(--coral); }
+    .dot-teal   { background: #2dd4bf; }
+
+    /* ── SUBJECT CARDS GRID ── */
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+      gap: 0.65rem;
+    }
+    .subj-card {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.85rem 0.8rem 0.75rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      text-align: center;
+      transition: all 0.2s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .subj-card::after {
+      content: ''; position: absolute; bottom: 0; right: 0; left: 0;
+      height: 2px; background: var(--card-accent, var(--accent));
+      transform: scaleX(0); transition: transform 0.2s; transform-origin: right;
+    }
+    .subj-card:hover { border-color: var(--border2); transform: translateY(-2px); background: #111f3a; }
+    .subj-card:hover::after { transform: scaleX(1); }
+    .subj-icon { font-size: 1.35rem; line-height: 1; }
+    .subj-name { font-size: 0.78rem; font-weight: 700; color: var(--text); line-height: 1.4; }
+    .subj-en   { font-size: 0.65rem; color: var(--text3); font-family: 'JetBrains Mono', monospace; margin-top: 0.1rem; }
+    .subj-type {
+      font-size: 0.6rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 20px;
+      margin-top: auto; letter-spacing: 0.04em;
+    }
+    .type-lab  { background: rgba(0,212,170,0.1);  color: var(--green);  border: 1px solid rgba(0,212,170,0.2); }
+    .type-core { background: rgba(0,170,255,0.1);  color: var(--accent); border: 1px solid rgba(0,170,255,0.2); }
+    .type-spec { background: rgba(167,139,250,0.1);color: var(--purple); border: 1px solid rgba(167,139,250,0.2); }
+    .type-opt  { background: rgba(245,158,11,0.1); color: var(--amber);  border: 1px solid rgba(245,158,11,0.2); }
+    .type-uni  { background: rgba(248,113,113,0.1);color: var(--coral);  border: 1px solid rgba(248,113,113,0.2); }
+
+    /* ── SOCIAL ── */
+    .social-row { display: flex; gap: 0.65rem; justify-content: center; flex-wrap: wrap; }
+    .soc-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.6rem 1.1rem;
+      border-radius: 50px; border: 1px solid var(--border2); background: rgba(0,170,255,0.04);
+      color: var(--text2); text-decoration: none; font-size: 0.82rem; font-weight: 600; transition: all 0.2s;
+    }
+    .soc-btn:hover { background: rgba(0,170,255,0.1); color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+    .soc-btn svg { width:16px; height:16px; flex-shrink:0; }
+
+    footer { position: relative; z-index: 1; text-align: center; padding: 2rem 1.25rem; border-top: 1px solid var(--border); color: var(--text3); font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .fi { animation: fadeUp 0.5s ease forwards; }
+    .d1{animation-delay:.05s;opacity:0} .d2{animation-delay:.12s;opacity:0} .d3{animation-delay:.2s;opacity:0}
+    .d4{animation-delay:.28s;opacity:0} .d5{animation-delay:.36s;opacity:0}
+
+    @media(max-width:500px){
+      .stats{grid-template-columns:1fr 1fr;}
+      .stats .stat:last-child{grid-column:span 2;}
+      .subjects-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));}
+    }
+  </style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<header>
+  <nav class="top-nav fi">
+    <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" class="nav-pill" target="_blank">🎓 بوابة الطالب</a>
+    <a href="http://appserver.fet.edu.jo:7778/courses/index.jsp" class="nav-pill" target="_blank">📋 جريدة المواد</a>
+    <a href="https://www.bau.edu.jo/taqweem.aspx" class="nav-pill" target="_blank">📅 التقويم الجامعي</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <!-- <div class="badge fi d1">Network Security Engineering</div> -->
+    <h1 class="fi d2">زيد اللحام · Zaid Al-Laham</h1>
+    <p class="pos fi d2">Network Security Engineer</p>
+    <p class="tag fi d3">هذا العمل لوجه الله تعالى 🤍</p>
+    <a href="https://drive.google.com/drive/folders/10mxHtCUlBasABpkG1ALFxkd65Epwm-BT?usp=drive_link" class="btn-cta fi d4" target="_blank">📂 رابط الدورات التخصصية</a>
+  </section>
+
+  <div class="stats fi d4">
+    <!-- <div class="stat"><div class="stat-n">NSE</div><div class="stat-l">Network Security Eng.</div></div> -->
+    <div class="stat"><div class="stat-n">BAU</div><div class="stat-l">البلقاء التطبيقية</div></div>
+    <div class="stat"><div class="stat-n">2025</div><div class="stat-l">تاريخ التخرج</div></div>
+  </div>
+
+  <div class="sec-label fi d5"><span>// COMPUTER ENGINEERING</span></div>
+  <a href="https://laithamro44.github.io/Comp.Eng/" class="comp-banner fi d5" target="_blank">
+    <div class="cb-left">
+      <div class="cb-icon">💻</div>
+      <div class="cb-text">
+        <h3>تجميعات هندسة الحاسوب</h3>
+        <p>رابط تجميعات هندسة الحاسوب – المهندس ليث عمرو</p>
+      </div>
+    </div>
+    <span class="cb-arr">←</span>
+  </a>
+
+  <!-- ════════════════════════════════════
+       SUBJECTS SECTION
+  ════════════════════════════════════ -->
+  <div class="sec-label fi"><span>// COURSES & LABS — اضغط على أي مادة</span></div>
+
+  <!-- ── السنة الأولى ── -->
+  <div class="semester fi">
+    <div class="semester-title"><span class="dot dot-blue"></span>السنة الأولى · Year 1</div>
+    <div class="subjects-grid">
+      <a href="https://drive.google.com/drive/folders/1WhADOpw_rwKbzOnqEutE97RYRbCXm15k" target="_blank" class="subj-card" style="--card-accent:#00aaff">
+        <div class="subj-icon">💻</div><div class="subj-name">لغة سي++</div><div class="subj-en">C++</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1TUngKFjBky4Oa2dxIN1XTrZbqfaQNphd" target="_blank" class="subj-card" style="--card-accent:#00aaff">
+        <div class="subj-icon">🖥️</div><div class="subj-name">مهارات حاسوب</div><div class="subj-en">Computer Skills Lab</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1nnpdBlrWoPiJoGO9lKzKmhbt62AuxvYx" target="_blank" class="subj-card" style="--card-accent:#00aaff">
+        <div class="subj-icon">⚛️</div><div class="subj-name">فيزياء 1</div><div class="subj-en">Physics 1</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1caXXMURhqJHHZ5q4zLMBkQ7US6CM7Fg2" target="_blank" class="subj-card" style="--card-accent:#00aaff">
+        <div class="subj-icon">⚛️</div><div class="subj-name">فيزياء 2</div><div class="subj-en">Physics 2</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/10Cby0KQEZHy1NRoLP_j9tvJyPqRt6O5o" target="_blank" class="subj-card" style="--card-accent:#00aaff">
+        <div class="subj-icon">∫</div><div class="subj-name">تفاضل وتكامل 1</div><div class="subj-en">Calculus 1</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1g6k2YgJQxFw3zv4Uhs7vM0eHPZ-gwbPZ" target="_blank" class="subj-card" style="--card-accent:#00aaff">
+        <div class="subj-icon">∫</div><div class="subj-name">تفاضل وتكامل 2</div><div class="subj-en">Calculus 2</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1RkoQwjLgQLIqHZz-LbZN13-SL9IzNpuf" target="_blank" class="subj-card" style="--card-accent:#00aaff">
+        <div class="subj-icon">🧪</div><div class="subj-name">كيمياء عامة</div><div class="subj-en">Chemistry</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1zAzX6bkFHXhzrUp9YRamOBxwxmzYpAeJ" target="_blank" class="subj-card" style="--card-accent:#f87171">
+        <div class="subj-icon">🇬🇧</div><div class="subj-name">إنجليزي 1</div><div class="subj-en">English 1</div><span class="subj-type type-uni">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1Pr69r8Qmm3HMJYi2Jy5x2HMUN1JdSQJ7" target="_blank" class="subj-card" style="--card-accent:#f87171">
+        <div class="subj-icon">🇬🇧</div><div class="subj-name">إنجليزي 2</div><div class="subj-en">English 2</div><span class="subj-type type-uni">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1mBGPzzkd9i8ZsVEmn_tjyN1u4PBttfK-" target="_blank" class="subj-card" style="--card-accent:#f87171">
+        <div class="subj-icon">📖</div><div class="subj-name">عربي تطبيقي</div><div class="subj-en">Arabic</div><span class="subj-type type-uni">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1C-EgZazufnw9Ej8oh08MwwJRfY5jzPYg" target="_blank" class="subj-card" style="--card-accent:#f87171">
+        <div class="subj-icon">🏳️</div><div class="subj-name">وطنية</div><div class="subj-en">National Studies</div><span class="subj-type type-uni">إجباري</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── السنة الثانية ── -->
+  <div class="semester fi">
+    <div class="semester-title"><span class="dot dot-teal"></span>السنة الثانية · Year 2</div>
+    <div class="subjects-grid">
+      <a href="https://drive.google.com/drive/folders/1ISeJwFAzVipvBwqowtScEeioJQUojyML" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
+        <div class="subj-icon">🔗</div><div class="subj-name">منطق رقمي</div><div class="subj-en">Logic Design</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1ZOSDlQ2ZjesHn9h3Z7P0pVAjhqhDJZ1-" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
+        <div class="subj-icon">🧩</div><div class="subj-name">برمجة بلغة الكينونة</div><div class="subj-en">OOP</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1Y2kub5CP3rgzc0OvFWk7gsHfLwib8umk" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
+        <div class="subj-icon">⚙️</div><div class="subj-name"> أسمبلي</div><div class="subj-en">Assembly</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1wtc1CPRZHuUYU8EZp9mYNcO5W8Fgt953" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
+        <div class="subj-icon">⚡</div><div class="subj-name">دوائر كهربائية 1</div><div class="subj-en">Circuits 1</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1kONBtuSdx16LzTaqP4rJLYZ_SbuAxb8n" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
+        <div class="subj-icon">⚡</div><div class="subj-name">دوائر كهربائية 2</div><div class="subj-en">Circuits 2</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1r4uxajsrX6AqibagkezWVnloF0LTv2V0" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
+        <div class="subj-icon">📊</div><div class="subj-name">معادلات تفاضلية</div><div class="subj-en">Diff. Equations</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1N5DlZsDzfoGm_XAjqoxhq13sGA824k66" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
+        <div class="subj-icon">📉</div><div class="subj-name">إحصاء واحتمالات</div><div class="subj-en">Statistics</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1SwwMuep3us7zHKlWlzoqqUD1mndN0s_9" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
+        <div class="subj-icon">🔢</div><div class="subj-name">جبر خطي</div><div class="subj-en">Linear Algebra</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1gqKqxREhgyuCNlwXTK627Urjov56ky2q" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
+        <div class="subj-icon">💡</div><div class="subj-name">ابتكار و ريادة</div><div class="subj-en">Innovation</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1TJ1ETqicvRB1ctDh4J6nnd8MazlfgeiH" target="_blank" class="subj-card" style="--card-accent:#f87171">
+        <div class="subj-icon">✍️</div><div class="subj-name">كتابة تقنية</div><div class="subj-en">Tech Writing</div><span class="subj-type type-uni">إجباري</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── السنة الثالثة ── -->
+  <div class="semester fi">
+    <div class="semester-title"><span class="dot dot-green"></span>السنة الثالثة · Year 3</div>
+    <div class="subjects-grid">
+      <a href="https://drive.google.com/drive/folders/1H8hubH3xXlU4hi1aVrPzLG_7uF-LVSX6" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🖥️</div><div class="subj-name">معمارية الحاسوب</div><div class="subj-en">Computer Arch.</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1WI9vrSx2-enkcBQwaEWbrm9YuJFWUS9n" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">📟</div><div class="subj-name">إلكترونيات 1</div><div class="subj-en">Electronics 1</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1SG45ESz9GPCxB7qcVTkb4_YkhKz7RSPr" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">📡</div><div class="subj-name">أنظمة و إشارات</div><div class="subj-en">Signals & Systems</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1c3WnTvyJKJ0BE-XN1sl3U-zEZEz6HcZM" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">📶</div><div class="subj-name">اتصالات و تراسل</div><div class="subj-en">Communications</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1P5CMyB0sb2Zf7oZOBmgO1-CrH6iZRz3s" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🌐</div><div class="subj-name">أساسيات الشبكات</div><div class="subj-en">Networks</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1WB1s-7M3mgN7YXCDQlC88I4jNunOezKN?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🖱️</div><div class="subj-name">نظم التشغيل</div><div class="subj-en">Operating Systems</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/127LouU_PJdwqA6K9KQ0aw6gKVJWdc-Tv?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🗄️</div><div class="subj-name">قواعد البيانات</div><div class="subj-en">Databases</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/15dbXyPQdWh0hy1svAkqnYqlETL697feD?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🗂️</div><div class="subj-name">تراكيب البيانات</div><div class="subj-en">Data Structures</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1Dsz6Oko7gJ9nENBxFkRLaZkUIuY1T_IC?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🔌</div><div class="subj-name">آلات كهربائية 1</div><div class="subj-en">Machines 1</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1LCLVJlhY1AqIkCwvOKlRA3Vr0S8lS32T" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🔣</div><div class="subj-name">تقنيات</div><div class="subj-en">Numerical Methods</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1FW5R04K77BNpiNwCSvnckTzgoEzwbCsW?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🤖</div><div class="subj-name">ذكاء اصطناعي</div><div class="subj-en">Artificial Intelligence</div><span class="subj-type type-core">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/152RZDyVg4Psz0erhfMsGKoMymDoX1Z3I?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#f87171">
+        <div class="subj-icon">📈</div><div class="subj-name">اقتصاد هندسي</div><div class="subj-en">Eng. Economics</div><span class="subj-type type-uni">إجباري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1-0nlk9c2osvcIRpQc1CDrJZ7XUIIIuwD?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#f87171">
+        <div class="subj-icon">🪖</div><div class="subj-name">علوم عسكرية</div><div class="subj-en">Military Sciences</div><span class="subj-type type-uni">إجباري</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── السنة الرابعة – تخصص ── -->
+  <div class="semester fi">
+    <div class="semester-title"><span class="dot dot-purple"></span>السنة الرابعة · Year 4 </div>
+    <div class="subjects-grid">
+      <a href="https://drive.google.com/drive/folders/16tevp54s0ujGVuzwNXVZfAIUVR9mWUzp?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
+        <div class="subj-icon">🔐</div><div class="subj-name">أساسيات الأمن السيبراني</div><div class="subj-en">Cyber Fundamentals</div><span class="subj-type type-spec">تخصص</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/13GeH-_wH02-yyIy5DNCscqCo2rvo-7w9?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
+        <div class="subj-icon">📡</div><div class="subj-name">بروتوكولات الشبكات</div><div class="subj-en">Network Protocols</div><span class="subj-type type-spec">تخصص</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1JPhj218thqIcG9ftf8UcBPNigbbegG1f" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
+        <div class="subj-icon">🕹️</div><div class="subj-name">أنظمة التحكم</div><div class="subj-en">Control Systems</div><span class="subj-type type-spec">تخصص</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1Z8cynR46O_0QLofChsGwP3PUe1Xf4Knj?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
+        <div class="subj-icon">📶</div><div class="subj-name">شبكات لاسلكية</div><div class="subj-en">Wireless Networks</div><span class="subj-type type-spec">تخصص</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1sOdiEdOS1H1as42muXIFmN6Ih-BTpDe4?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
+        <div class="subj-icon">☁️</div><div class="subj-name">حوسبة سحابية</div><div class="subj-en">Cloud Computing</div><span class="subj-type type-spec">تخصص</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1B39-sn3W-Fx63o719-GNuAT--gKoimMB?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
+        <div class="subj-icon">💻</div><div class="subj-name">برمجة الشبكات</div><div class="subj-en">Network Programming</div><span class="subj-type type-spec">تخصص</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1yQRWFbRjdfFbo3f5Oeuo-bMUyfA44Fj7?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
+        <div class="subj-icon">🔒</div><div class="subj-name">تشفير</div><div class="subj-en">Cryptography</div><span class="subj-type type-spec">تخصص</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1RB6SpC7UlmknZStS2nJ0l2DV71haLLz0?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
+        <div class="subj-icon">🔍</div><div class="subj-name">جنائيات رقمية</div><div class="subj-en">Digital Forensics</div><span class="subj-type type-spec">تخصص</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── مواد اختيارية ── -->
+  <div class="semester fi">
+    <div class="semester-title"><span class="dot dot-amber"></span>مواد اختيارية · Electives</div>
+    <div class="subjects-grid">
+      <a href="https://drive.google.com/drive/folders/191pbWbAXUWRS1ANC917A9rNQVMYDhTIS?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#f59e0b">
+        <div class="subj-icon">📊</div><div class="subj-name">نمذجة الشبكات</div><div class="subj-en">Systems Analysis</div><span class="subj-type type-opt">اختياري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1-XMwEE1Tki0RQJwe0Afoo3UdKR735qrG?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#f59e0b">
+        <div class="subj-icon">📚</div><div class="subj-name">مواضيع خاصة</div><div class="subj-en">Special Topics</div><span class="subj-type type-opt">اختياري</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1bX_wIkrNlQ-vyJlPZFrF3Au_gJkijDRE?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#f59e0b">
+        <div class="subj-icon">📱</div><div class="subj-name">إنترنت الأشياء</div><div class="subj-en">IoT</div><span class="subj-type type-opt">اختياري</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── المختبرات ── -->
+  <div class="semester fi">
+    <div class="semester-title"><span class="dot dot-coral"></span>المختبرات · Labs</div>
+    <div class="subjects-grid">
+      <a href="https://drive.google.com/drive/folders/1viYYyuxtF68qyudx8zqe1CSUtDdoLjDD" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🔬</div><div class="subj-name">مختبر فيزياء</div><div class="subj-en">Physics Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+        <a href="https://drive.google.com/drive/folders/1jlkVstfSYA-rU0Iue2lFiamT_PegEaF0" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">📐</div><div class="subj-name">رسم هندسي</div><div class="subj-en">Engineering Drawing</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/19iD1q-SRdI-r_E8cZzbfY462hJgTycSm" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🔧</div><div class="subj-name">مشغل</div><div class="subj-en">Workshop</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1ceZy3CUahNxYznnihFyzWd9a_o8i9QCd" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🧪</div><div class="subj-name">مختبر كيمياء</div><div class="subj-en">Chemistry Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1q5tRYLNSwuQjmO7MJ_TtMHzP6O99X6-q" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🔗</div><div class="subj-name">مختبر منطق</div><div class="subj-en">Logic Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1XkdEBXiyT6Gx0P7BFHZBXA1NJh32pT0s" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">⚡</div><div class="subj-name">مختبر دوائر</div><div class="subj-en">Circuits Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1TPzQ_5mWRjUXLqMi9-Iu6U7Vq0ccEjmO" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🗂️</div><div class="subj-name">مختبر تراكيب البيانات</div><div class="subj-en">Data Struct. Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1n1lgVtsBSrSyPBClFYa6369YY_nU2mSR" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">⚙️</div><div class="subj-name">مختبر أسمبلي</div><div class="subj-en">Assembly Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/u/0/folders/181JCD7SiCIVdijlz-4WRYX4QP3HXc2rq" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🖥️</div><div class="subj-name">مختبر معمارية</div><div class="subj-en">Arch. Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1BJ0KWtzcyyigzvurQWV1NLhCU7ixk-12?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🌐</div><div class="subj-name">مختبر شبكات</div><div class="subj-en">Networks Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1gKOHs3PwkZzemAVG3oxbQv0z5p51DTwO" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🕹️</div><div class="subj-name">مختبر تحكم</div><div class="subj-en">Control Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1UKctd1Nr4GmOufK6GcCjZqW-zMZRCcIi" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">📟</div><div class="subj-name">مختبر إلكترونيات</div><div class="subj-en">Electronics Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1z5bk_7yJgUIHiMgKyNGNiFE635PoIpTG?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🗄️</div><div class="subj-name">مختبر قواعد بيانات</div><div class="subj-en">DB Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1f-w5S8Rz6XFzVLANdA_uDyARJHgRkcts?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🔐</div><div class="subj-name">مختبر أمن سيبراني</div><div class="subj-en">Cyber Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1e18k5HE36QC-0aBcR8ZiYKCuzL_9xHSr?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">📡</div><div class="subj-name">مختبر بروتوكولات</div><div class="subj-en">Protocols Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1Pz7eQmMjlb-J4z492AVEn6ioheGpPFe7?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon">🔍</div><div class="subj-name">مختبر جنائيات</div><div class="subj-en">Forensics Lab</div><span class="subj-type type-lab">مختبر</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── SOCIAL ── -->
+  <div class="sec-label fi"><span>// CONTACT</span></div>
+  <div class="social-row fi">
+    <a href="mailto:eng.zaidallaham@gmail.com" class="soc-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      Email
+    </a>
+    <a href="https://www.youtube.com/channel/UCckTrAYMwVeHj5hK3tNlw1A" class="soc-btn" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#0a0f1e" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+      YouTube
+    </a>
+    <a href="https://www.linkedin.com/in/zaid-al-laham/" class="soc-btn" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 · Zaid Al-Laham · <span style="color:var(--accent)">Network Security Engineer</span></p>
+  <p style="margin-top:0.35rem;font-size:0.68rem">الحقوق محفوظة للطالب زيد اللحام </p>
+</footer>
+
+</body>
+</html>
