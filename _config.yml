@@ -1,6 +1,0 @@
-title: "Zaid Al-Laham"
-description: "Network Security Engineer"
-baseurl: "/Network.Eng"
-url: "https://zaidallaham.github.io"
-markdown: kramdown
-permalink: /blog/:year/:month/:day/:title/
