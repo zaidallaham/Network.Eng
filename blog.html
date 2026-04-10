@@ -296,9 +296,11 @@
 <footer>
   <p>© 2026 · Zaid Al-Laham · <span style="color:var(--accent)">Network Security Engineer</span></p>
 </footer>
-
 <script>
   const ADMIN_HASH = '5b189033f0fa5f440149380f6426d57b348df6053d06aef0751c8d70e86090b2';
+  const BIN_ID  = '69d91843aaba882197e504c8';
+  const API_KEY = '$2a$10$j2hJxmPP27SDs4trZcgOPeX9kPLMsa8hcV2kCdZWw5RRQ5dC7ZtMi';
+  const BIN_URL = 'https://api.jsonbin.io/v3/b/' + BIN_ID;
 
   const TAG_CONFIG = {
     network: { label: '🌐 Network',       cls: 'tag-network', color: '#00aaff' },
@@ -309,13 +311,29 @@
   };
 
   let currentFilter = 'all';
-  let pendingImages = []; // base64 strings for new post
+  let pendingImages = [];
+  let allPosts = [];
 
-  // ── Storage ──
-  function getPosts() {
-    try { return JSON.parse(localStorage.getItem('zaid_blog_posts') || '[]'); } catch { return []; }
+  // ── JSONBin API ──
+  async function fetchPosts() {
+    try {
+      const res = await fetch(BIN_URL + '/latest', {
+        headers: { 'X-Master-Key': API_KEY }
+      });
+      const data = await res.json();
+      allPosts = data.record.posts || [];
+    } catch(e) {
+      allPosts = [];
+    }
   }
-  function savePosts(posts) { localStorage.setItem('zaid_blog_posts', JSON.stringify(posts)); }
+
+  async function savePosts() {
+    await fetch(BIN_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
+      body: JSON.stringify({ posts: allPosts })
+    });
+  }
 
   // ── Auth ──
   function isAdmin() { return sessionStorage.getItem('blog_admin') === 'yes'; }
@@ -364,64 +382,63 @@
     if (f.classList.contains('open')) document.getElementById('postTitle').focus();
   }
 
-  // ── Image handling ──
+  // ── Images ──
   function handleImages(e) {
-    const files = Array.from(e.target.files);
-    files.forEach(file => {
+    Array.from(e.target.files).forEach(file => {
       const reader = new FileReader();
-      reader.onload = function(ev) {
-        pendingImages.push(ev.target.result);
-        renderPreviews();
-      };
+      reader.onload = ev => { pendingImages.push(ev.target.result); renderPreviews(); };
       reader.readAsDataURL(file);
     });
     e.target.value = '';
   }
   function renderPreviews() {
-    const container = document.getElementById('imgPreviews');
-    container.innerHTML = pendingImages.map((src, i) =>
-      '<div class="img-preview-wrap">'
-      + '<img src="' + src + '" />'
-      + '<button class="remove-img" onclick="removeImg(' + i + ')">✕</button>'
-      + '</div>'
+    document.getElementById('imgPreviews').innerHTML = pendingImages.map((src, i) =>
+      '<div class="img-preview-wrap"><img src="' + src + '" />'
+      + '<button class="remove-img" onclick="removeImg(' + i + ')">✕</button></div>'
     ).join('');
   }
-  function removeImg(i) {
-    pendingImages.splice(i, 1);
-    renderPreviews();
-  }
+  function removeImg(i) { pendingImages.splice(i, 1); renderPreviews(); }
 
   // ── Publish ──
-  function publishPost() {
+  async function publishPost() {
     if (!isAdmin()) return;
     const title = document.getElementById('postTitle').value.trim();
     const body  = document.getElementById('postBody').value.trim();
     const tag   = document.getElementById('postTag').value;
     if (!title || !body) { alert('الرجاء تعبئة العنوان والمحتوى'); return; }
-    const posts = getPosts();
-    posts.unshift({
+
+    const btn = document.querySelector('#postForm .btn-primary');
+    btn.textContent = '⏳ جاري الحفظ...';
+    btn.disabled = true;
+
+    allPosts.unshift({
       id: Date.now().toString(), title, body, tag,
       images: pendingImages.slice(),
       date: new Date().toLocaleDateString('ar-JO', { year:'numeric', month:'long', day:'numeric' })
     });
-    savePosts(posts);
+
+    await savePosts();
+
     document.getElementById('postTitle').value = '';
     document.getElementById('postBody').value = '';
     pendingImages = [];
     renderPreviews();
     document.getElementById('postForm').classList.remove('open');
+    btn.textContent = '🚀 نشر';
+    btn.disabled = false;
     renderPosts();
   }
 
   // ── Delete ──
-  function deletePost(id) {
+  async function deletePost(id) {
     if (!isAdmin()) return;
     if (!confirm('هل تريد حذف هذا المنشور؟')) return;
-    savePosts(getPosts().filter(p => p.id !== id));
+    allPosts = allPosts.filter(p => p.id !== id);
+    await savePosts();
     renderPosts();
   }
 
-  // ── Toggle expand ──
+  // ── Toggle card ──
   function togglePost(id) {
     const card = document.getElementById('pc-' + id);
     if (card) card.classList.toggle('expanded');
@@ -436,13 +453,12 @@
   }
 
   // ── Lightbox ──
-  function openLightbox(src) {
-    document.getElementById('lightboxImg').src = src;
-    document.getElementById('lightbox').classList.add('open');
+  function openLightboxById(postId, idx) {
+    const post = allPosts.find(p => p.id === postId);
+    const src = post && (post.images || [])[idx];
+    if (src) { document.getElementById('lightboxImg').src = src; document.getElementById('lightbox').classList.add('open'); }
   }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-  }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
 
   function escHtml(str) {
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -451,7 +467,7 @@
   // ── Render ──
   function renderPosts() {
     const list = document.getElementById('postsList');
-    let posts = getPosts();
+    let posts = allPosts;
     if (currentFilter !== 'all') posts = posts.filter(p => p.tag === currentFilter);
 
     if (posts.length === 0) {
@@ -461,15 +477,11 @@
       return;
     }
 
-    list.innerHTML = posts.map(function(post) {
+    list.innerHTML = posts.map(post => {
       const tc = TAG_CONFIG[post.tag] || TAG_CONFIG.general;
-      const imgs = (post.images || []).map(function(src) {
-        return '<img src="' + src + '" onclick="openLightbox(\'' + src.substring(0,30) + '\')" style="max-height:260px" />';
-      }).join('');
-      // For lightbox we store full src in a data attribute instead
-      const imgsHtml = (post.images || []).map(function(src, idx) {
-        return '<img src="' + src + '" onclick="openLightboxById(\'' + post.id + '\',' + idx + ')" style="max-height:260px" />';
-      }).join('');
+      const imgsHtml = (post.images || []).map((src, idx) =>
+        '<img src="' + src + '" onclick="openLightboxById(\'' + post.id + '\',' + idx + ')" style="max-height:260px" />'
+      ).join('');
       const deleteBtn = isAdmin()
         ? '<button class="btn-delete" onclick="event.stopPropagation();deletePost(\'' + post.id + '\')">🗑️ حذف</button>'
         : '';
@@ -485,26 +497,18 @@
         + '<div class="post-content">' + escHtml(post.body) + '</div>'
         + (imgsHtml ? '<div class="post-images">' + imgsHtml + '</div>' : '')
         + (isAdmin() ? '<div class="post-card-actions">' + deleteBtn + '</div>' : '')
-        + '</div>'
-        + '</div>';
+        + '</div></div>';
     }).join('');
-
-    // Store images for lightbox
-    window._postImages = {};
-    posts.forEach(function(post) {
-      window._postImages[post.id] = post.images || [];
-    });
   }
 
-  function openLightboxById(postId, idx) {
-    const src = (window._postImages[postId] || [])[idx];
-    if (src) {
-      document.getElementById('lightboxImg').src = src;
-      document.getElementById('lightbox').classList.add('open');
-    }
-  }
-
-  updateAdminUI();
+  // ── Init: load posts then show ──
+  (async function init() {
+    document.getElementById('postsList').innerHTML =
+      '<div class="empty-state"><div class="big-icon" style="animation:pulse 1.5s infinite">⏳</div><p>جاري تحميل المنشورات...</p></div>';
+    await fetchPosts();
+    updateAdminUI();
+  })();
 </script>
+
 </body>
 </html>
