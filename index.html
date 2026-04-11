@@ -28,7 +28,25 @@
     .orb-2 { width:420px; height:420px; background:radial-gradient(circle,#6d28d9,transparent); bottom:80px;  left:-120px; }
 
     .wrap { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 1.25rem 5rem; }
-
+.search-wrap {
+  margin: 0 0 1.2rem;
+}
+.search-input {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.9rem;
+  padding: 0.85rem 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0,170,255,0.08);
+}
     /* ── NAV ── */
     header { position: relative; z-index: 1; padding: 1.75rem 1.25rem 0; display: flex; justify-content: center; }
     .top-nav { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
@@ -231,7 +249,15 @@
        SUBJECTS SECTION
   ════════════════════════════════════ -->
   <div class="sec-label fi"><span>COURSES & LABS —  اضغط على المادة المطلوبة</span></div>
-
+<div class="search-wrap fi">
+  <input
+    type="text"
+    id="courseSearch"
+    class="search-input"
+    placeholder="ابحث عن مادة... Search courses..."
+    oninput="filterCourses()"
+  />
+</div>
   <!-- ── السنة الأولى ── -->
   <div class="semester fi">
     <div class="semester-title"><span class="dot dot-blue"></span>السنة الأولى · Year 1</div>
@@ -456,7 +482,26 @@
       </a>
     </div>
   </div>
+<script>
+  function filterCourses() {
+    const q = document.getElementById('courseSearch').value.toLowerCase().trim();
+    const semesters = document.querySelectorAll('.semester');
 
+    semesters.forEach(semester => {
+      const cards = semester.querySelectorAll('.subj-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        const match = text.includes(q);
+        card.style.display = match ? 'flex' : 'none';
+        if (match) visibleCount++;
+      });
+
+      semester.style.display = visibleCount > 0 ? 'block' : 'none';
+    });
+  }
+</script>
   <!-- ── SOCIAL ── -->
   <div class="sec-label fi"><span>CONTACT</span></div>
   <div class="social-row fi">
