@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.383.0/umd/lucide.min.js"></script>
   <style>
     :root {
       --bg: #0a0f1e; --card: #0f1a30; --card2: #0d1826;
@@ -26,28 +27,19 @@
     }
     .orb { position: fixed; border-radius: 50%; filter: blur(90px); opacity: 0.18; pointer-events: none; z-index: 0; }
     .orb-1 { width:550px; height:550px; background:radial-gradient(circle,#0055bb,transparent); top:-180px; right:-120px; }
-    .orb-2 { width:420px; height:420px; background:radial-gradient(circle,#6d28d9,transparent); bottom:80px;  left:-120px; }
+    .orb-2 { width:420px; height:420px; background:radial-gradient(circle,#6d28d9,transparent); bottom:80px; left:-120px; }
 
     .wrap { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 1.25rem 5rem; }
-.search-wrap {
-  margin: 0 0 1.2rem;
-}
-.search-input {
-  width: 100%;
-  background: var(--card);
-  border: 1px solid var(--border2);
-  border-radius: 12px;
-  color: var(--text);
-  font-family: 'Cairo', sans-serif;
-  font-size: 0.9rem;
-  padding: 0.85rem 1rem;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.search-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(0,170,255,0.08);
-}
+
+    .search-wrap { margin: 0 0 1.2rem; }
+    .search-input {
+      width: 100%; background: var(--card); border: 1px solid var(--border2);
+      border-radius: 12px; color: var(--text); font-family: 'Cairo', sans-serif;
+      font-size: 0.9rem; padding: 0.85rem 1rem; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,170,255,0.08); }
+
     /* ── NAV ── */
     header { position: relative; z-index: 1; padding: 1.75rem 1.25rem 0; display: flex; justify-content: center; }
     .top-nav { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
@@ -58,6 +50,7 @@
       transition: all 0.2s;
     }
     .nav-pill:hover { background: rgba(0,170,255,0.14); color: var(--accent2); transform: translateY(-1px); }
+    .nav-pill svg { width: 13px; height: 13px; flex-shrink: 0; }
 
     /* ── HERO ── */
     .hero { text-align: center; padding: 3rem 1rem 2rem; }
@@ -83,6 +76,7 @@
       transition: all 0.25s; box-shadow: 0 0 22px rgba(0,170,255,0.3);
     }
     .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(0,170,255,0.5); }
+    .btn-cta svg { width: 16px; height: 16px; flex-shrink: 0; }
 
     /* ── STATS ── */
     .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.85rem; margin-bottom: 0.5rem; }
@@ -94,26 +88,8 @@
     }
     .stat-l { font-size: 0.7rem; color: var(--text3); margin-top: 0.15rem; }
 
-    /* ── COMP ENG BANNER ── */
-    .comp-banner {
-      display: flex; align-items: center; justify-content: space-between;
-      background: var(--card); border: 1px solid rgba(0,212,170,0.3); border-radius: 15px;
-      padding: 1.1rem 1.5rem; text-decoration: none; color: inherit; transition: all 0.22s;
-      position: relative; overflow: hidden;
-    }
-    .comp-banner::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,212,170,0.05),transparent); opacity:0; transition:opacity 0.22s; }
-    .comp-banner:hover { transform: translateY(-2px); box-shadow: 0 0 22px rgba(0,212,170,0.14); border-color: var(--green); }
-    .comp-banner:hover::before { opacity: 1; }
-    .cb-left { display: flex; align-items: center; gap: 0.85rem; }
-    .cb-icon { width:44px; height:44px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; background:rgba(0,212,170,0.09); border:1px solid rgba(0,212,170,0.22); }
-    .cb-text h3 { font-size: 0.95rem; font-weight: 700; }
-    .cb-text p  { font-size: 0.78rem; color: var(--text2); margin-top: 0.1rem; }
-    .cb-arr { font-size: 1.2rem; color: var(--green); }
-
     /* ── SECTION DIVIDER ── */
-    .sec-label {
-      display: flex; align-items: center; gap: 0.65rem; margin: 2.5rem 0 1.2rem;
-    }
+    .sec-label { display: flex; align-items: center; gap: 0.65rem; margin: 2.5rem 0 1.2rem; }
     .sec-label::before { content:''; height:1px; flex:1; background:linear-gradient(to right,transparent,var(--border2)); }
     .sec-label::after  { content:''; height:1px; flex:1; background:linear-gradient(to left, transparent,var(--border2)); }
     .sec-label span { font-size:0.72rem; font-weight:700; letter-spacing:0.1em; color:var(--accent); font-family:'JetBrains Mono',monospace; white-space:nowrap; }
@@ -125,9 +101,7 @@
       font-size: 0.82rem; font-weight: 700; color: var(--text2);
       margin-bottom: 0.9rem; padding-right: 0.25rem;
     }
-    .semester-title .dot {
-      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-    }
+    .semester-title .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .dot-blue   { background: var(--accent); }
     .dot-green  { background: var(--green); }
     .dot-purple { background: var(--purple); }
@@ -142,21 +116,10 @@
       gap: 0.65rem;
     }
     .subj-card {
-      background: var(--card2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.85rem 0.8rem 0.75rem;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      text-align: center;
-      transition: all 0.2s;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
+      background: var(--card2); border: 1px solid var(--border); border-radius: 12px;
+      padding: 0.85rem 0.8rem 0.75rem; text-decoration: none; color: inherit;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      text-align: center; transition: all 0.2s; cursor: pointer; position: relative; overflow: hidden;
     }
     .subj-card::after {
       content: ''; position: absolute; bottom: 0; right: 0; left: 0;
@@ -165,7 +128,16 @@
     }
     .subj-card:hover { border-color: var(--border2); transform: translateY(-2px); background: #111f3a; }
     .subj-card:hover::after { transform: scaleX(1); }
-    .subj-icon { font-size: 1.35rem; line-height: 1; }
+
+    /* icon wrapper */
+    .subj-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+      flex-shrink: 0;
+    }
+    .subj-icon svg { width: 18px; height: 18px; stroke: var(--card-accent, var(--accent)); stroke-width: 1.75; fill: none; }
+
     .subj-name { font-size: 0.78rem; font-weight: 700; color: var(--text); line-height: 1.4; }
     .subj-en   { font-size: 0.65rem; color: var(--text3); font-family: 'JetBrains Mono', monospace; margin-top: 0.1rem; }
     .subj-type {
@@ -209,93 +181,110 @@
 
 <header>
   <nav class="top-nav fi">
-    <a href="https://blog-private-9gl.pages.dev/" class="nav-pill">Technical Blog</a>
-    <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" class="nav-pill" target="_blank"> بوابة الطالب</a>
-    <a href="http://appserver.fet.edu.jo:7778/courses/index.jsp" class="nav-pill" target="_blank"> جريدة المواد</a>
-    <a href="https://drive.google.com/drive/folders/1q-9ZXCTFvqN2Mose_Y_jkLEPDdjJ5Z63" class="nav-pill" target="_blank"> التقويم الجامعي</a>
-    <a href="https://laithamro44.github.io/Comp.Eng/" class="nav-pill" target="_blank"> رابط تجميعات هندسة الحاسوب – م.ليث عمرو </a>
-
+    <a href="https://blog-private-9gl.pages.dev/" class="nav-pill">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      Technical Blog
+    </a>
+    <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" class="nav-pill" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      بوابة الطالب
+    </a>
+    <a href="http://appserver.fet.edu.jo:7778/courses/index.jsp" class="nav-pill" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      جريدة المواد
+    </a>
+    <a href="https://drive.google.com/drive/folders/1q-9ZXCTFvqN2Mose_Y_jkLEPDdjJ5Z63" class="nav-pill" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      التقويم الجامعي
+    </a>
+    <a href="https://laithamro44.github.io/Comp.Eng/" class="nav-pill" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      رابط تجميعات هندسة الحاسوب – م.ليث عمرو
+    </a>
   </nav>
 </header>
 
 <div class="wrap">
 
   <section class="hero">
-    <!-- <div class="badge fi d1">Network Security Engineering</div> -->
     <h1 class="fi d2">زيد اللحام · Zaid Al-Laham</h1>
     <p class="pos fi d2">Network Security Engineer</p>
-    <p class="tag fi d3">هذا العمل لوجه الله تعالى </p>
-    <a href="https://drive.google.com/drive/folders/10mxHtCUlBasABpkG1ALFxkd65Epwm-BT?usp=drive_link" class="btn-cta fi d4" target="_blank">📂 رابط الدورات التخصصية</a>
+    <p class="tag fi d3">هذا العمل لوجه الله تعالى</p>
+    <a href="https://drive.google.com/drive/folders/10mxHtCUlBasABpkG1ALFxkd65Epwm-BT?usp=drive_link" class="btn-cta fi d4" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      رابط الدورات التخصصية
+    </a>
   </section>
 
   <div class="stats fi d4">
-    <!-- <div class="stat"><div class="stat-n">NSE</div><div class="stat-l">Network Security Eng.</div></div>
-        <div class="stat"><div class="stat-n">2025</div><div class="stat-l">تاريخ التخرج</div></div>-->
-    <div class="stat"><div class="stat-n">تجميعات مواد و دورات تخصص هندسة أمن الشبكات</div><div class="stat-l"> جامعة البلقاء التطبيقية</div></div>
+    <div class="stat"><div class="stat-n">تجميعات مواد و دورات تخصص هندسة أمن الشبكات</div><div class="stat-l">جامعة البلقاء التطبيقية</div></div>
   </div>
-<!--
-  <div class="sec-label fi d5"><span>// COMPUTER ENGINEERING</span></div>
-  <a href="https://laithamro44.github.io/Comp.Eng/" class="comp-banner fi d5" target="_blank">
-    <div class="cb-left">
-      <div class="cb-icon">💻</div>
-      <div class="cb-text">
-        <h3>تجميعات هندسة الحاسوب</h3>
-        <p>رابط تجميعات هندسة الحاسوب – المهندس ليث عمرو</p>
-      </div>
-    </div>
-    <span class="cb-arr">←</span>
-  </a>
--->
-  <!-- ════════════════════════════════════
-       SUBJECTS SECTION
-  ════════════════════════════════════ -->
-  <div class="sec-label fi"><span>COURSES & LABS —  اضغط على المادة المطلوبة</span></div>
-<div class="search-wrap fi">
-  <input
-    type="text"
-    id="courseSearch"
-    class="search-input"
-    placeholder="ابحث عن مادة... Search courses..."
-    oninput="filterCourses()"
-  />
-</div>
+
+  <div class="sec-label fi"><span>COURSES & LABS — اضغط على المادة المطلوبة</span></div>
+  <div class="search-wrap fi">
+    <input type="text" id="courseSearch" class="search-input" placeholder="ابحث عن مادة... Search courses..." oninput="filterCourses()" />
+  </div>
+
   <!-- ── السنة الأولى ── -->
   <div class="semester fi">
     <div class="semester-title"><span class="dot dot-blue"></span>السنة الأولى · Year 1</div>
     <div class="subjects-grid">
+
       <a href="https://drive.google.com/drive/folders/1WhADOpw_rwKbzOnqEutE97RYRbCXm15k" target="_blank" class="subj-card" style="--card-accent:#00aaff">
-        <div class="subj-icon">💻</div><div class="subj-name"> البرمجة للمهندسين</div><div class="subj-en">C++</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="subj-name">البرمجة للمهندسين</div><div class="subj-en">C++</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1TUngKFjBky4Oa2dxIN1XTrZbqfaQNphd" target="_blank" class="subj-card" style="--card-accent:#00aaff">
-        <div class="subj-icon">🖥️</div><div class="subj-name">مهارات حاسوب</div><div class="subj-en">Computer Skills Lab</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="subj-name">مهارات حاسوب</div><div class="subj-en">Computer Skills Lab</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1nnpdBlrWoPiJoGO9lKzKmhbt62AuxvYx" target="_blank" class="subj-card" style="--card-accent:#00aaff">
-        <div class="subj-icon">⚛️</div><div class="subj-name">فيزياء 1</div><div class="subj-en">Physics 1</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="subj-name">فيزياء 1</div><div class="subj-en">Physics 1</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1caXXMURhqJHHZ5q4zLMBkQ7US6CM7Fg2" target="_blank" class="subj-card" style="--card-accent:#00aaff">
-        <div class="subj-icon">⚛️</div><div class="subj-name">فيزياء 2</div><div class="subj-en">Physics 2</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="subj-name">فيزياء 2</div><div class="subj-en">Physics 2</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/10Cby0KQEZHy1NRoLP_j9tvJyPqRt6O5o" target="_blank" class="subj-card" style="--card-accent:#00aaff">
-        <div class="subj-icon">∫</div><div class="subj-name">تفاضل وتكامل 1</div><div class="subj-en">Calculus 1</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+        <div class="subj-name">تفاضل وتكامل 1</div><div class="subj-en">Calculus 1</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1g6k2YgJQxFw3zv4Uhs7vM0eHPZ-gwbPZ" target="_blank" class="subj-card" style="--card-accent:#00aaff">
-        <div class="subj-icon">∫</div><div class="subj-name">تفاضل وتكامل 2</div><div class="subj-en">Calculus 2</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+        <div class="subj-name">تفاضل وتكامل 2</div><div class="subj-en">Calculus 2</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1RkoQwjLgQLIqHZz-LbZN13-SL9IzNpuf" target="_blank" class="subj-card" style="--card-accent:#00aaff">
-        <div class="subj-icon">🧪</div><div class="subj-name">كيمياء عامة</div><div class="subj-en">Chemistry</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
+        <div class="subj-name">كيمياء عامة</div><div class="subj-en">Chemistry</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1zAzX6bkFHXhzrUp9YRamOBxwxmzYpAeJ" target="_blank" class="subj-card" style="--card-accent:#f87171">
-        <div class="subj-icon">🇬🇧</div><div class="subj-name">إنجليزي 1</div><div class="subj-en">English 1</div><span class="subj-type type-uni">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg></div>
+        <div class="subj-name">إنجليزي 1</div><div class="subj-en">English 1</div><span class="subj-type type-uni">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1Pr69r8Qmm3HMJYi2Jy5x2HMUN1JdSQJ7" target="_blank" class="subj-card" style="--card-accent:#f87171">
-        <div class="subj-icon">🇬🇧</div><div class="subj-name">إنجليزي 2</div><div class="subj-en">English 2</div><span class="subj-type type-uni">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg></div>
+        <div class="subj-name">إنجليزي 2</div><div class="subj-en">English 2</div><span class="subj-type type-uni">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1mBGPzzkd9i8ZsVEmn_tjyN1u4PBttfK-" target="_blank" class="subj-card" style="--card-accent:#f87171">
-        <div class="subj-icon">📖</div><div class="subj-name">عربي تطبيقي</div><div class="subj-en">Arabic</div><span class="subj-type type-uni">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div class="subj-name">عربي تطبيقي</div><div class="subj-en">Arabic</div><span class="subj-type type-uni">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1C-EgZazufnw9Ej8oh08MwwJRfY5jzPYg" target="_blank" class="subj-card" style="--card-accent:#f87171">
-        <div class="subj-icon">🏳️</div><div class="subj-name">وطنية</div><div class="subj-en">National Studies</div><span class="subj-type type-uni">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div>
+        <div class="subj-name">وطنية</div><div class="subj-en">National Studies</div><span class="subj-type type-uni">إجباري</span>
       </a>
+
     </div>
   </div>
 
@@ -303,36 +292,57 @@
   <div class="semester fi">
     <div class="semester-title"><span class="dot dot-teal"></span>السنة الثانية · Year 2</div>
     <div class="subjects-grid">
+
       <a href="https://drive.google.com/drive/folders/1ISeJwFAzVipvBwqowtScEeioJQUojyML" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
-        <div class="subj-icon">🔗</div><div class="subj-name">تصميم منطق رقمي </div><div class="subj-en">Logic Design</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
+        <div class="subj-name">تصميم منطق رقمي</div><div class="subj-en">Logic Design</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1ZOSDlQ2ZjesHn9h3Z7P0pVAjhqhDJZ1-" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
-        <div class="subj-icon">🧩</div><div class="subj-name">برمجة بلغة الكينونة</div><div class="subj-en">OOP</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <div class="subj-name">برمجة بلغة الكينونة</div><div class="subj-en">OOP</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1Y2kub5CP3rgzc0OvFWk7gsHfLwib8umk" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
-        <div class="subj-icon">⚙️</div><div class="subj-name"> انظمة معالجات دقيقة</div><div class="subj-en">Assembly</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+        <div class="subj-name">انظمة معالجات دقيقة</div><div class="subj-en">Assembly</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1wtc1CPRZHuUYU8EZp9mYNcO5W8Fgt953" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
-        <div class="subj-icon">⚡</div><div class="subj-name">دوائر كهربائية 1</div><div class="subj-en">Circuits 1</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="13 2 13 9 20 9"/><path d="M20 14.5V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9"/><path d="M12 12H6"/><path d="M12 16H6"/><path d="M8 8H6"/></svg></div>
+        <div class="subj-name">دوائر كهربائية 1</div><div class="subj-en">Circuits 1</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1kONBtuSdx16LzTaqP4rJLYZ_SbuAxb8n" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
-        <div class="subj-icon">⚡</div><div class="subj-name">دوائر كهربائية 2</div><div class="subj-en">Circuits 2</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="13 2 13 9 20 9"/><path d="M20 14.5V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9"/><path d="M12 12H6"/><path d="M12 16H6"/><path d="M8 8H6"/></svg></div>
+        <div class="subj-name">دوائر كهربائية 2</div><div class="subj-en">Circuits 2</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1r4uxajsrX6AqibagkezWVnloF0LTv2V0" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
-        <div class="subj-icon">📊</div><div class="subj-name">معادلات تفاضلية</div><div class="subj-en">Diff. Equations</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="subj-name">معادلات تفاضلية</div><div class="subj-en">Diff. Equations</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1N5DlZsDzfoGm_XAjqoxhq13sGA824k66" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
-        <div class="subj-icon">📉</div><div class="subj-name">إحصاء واحتمالات</div><div class="subj-en">Statistics</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="subj-name">إحصاء واحتمالات</div><div class="subj-en">Statistics</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1SwwMuep3us7zHKlWlzoqqUD1mndN0s_9" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
-        <div class="subj-icon">🔢</div><div class="subj-name">جبر خطي</div><div class="subj-en">Linear Algebra</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+        <div class="subj-name">جبر خطي</div><div class="subj-en">Linear Algebra</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1gqKqxREhgyuCNlwXTK627Urjov56ky2q" target="_blank" class="subj-card" style="--card-accent:#2dd4bf">
-        <div class="subj-icon">💡</div><div class="subj-name">ابتكار و ريادة</div><div class="subj-en">Innovation</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="subj-name">ابتكار و ريادة</div><div class="subj-en">Innovation</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1TJ1ETqicvRB1ctDh4J6nnd8MazlfgeiH" target="_blank" class="subj-card" style="--card-accent:#f87171">
-        <div class="subj-icon">✍️</div><div class="subj-name">كتابة تقنية</div><div class="subj-en">Tech Writing</div><span class="subj-type type-uni">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <div class="subj-name">كتابة تقنية</div><div class="subj-en">Tech Writing</div><span class="subj-type type-uni">إجباري</span>
       </a>
+
     </div>
   </div>
 
@@ -340,76 +350,120 @@
   <div class="semester fi">
     <div class="semester-title"><span class="dot dot-green"></span>السنة الثالثة · Year 3</div>
     <div class="subjects-grid">
+
       <a href="https://drive.google.com/drive/folders/1H8hubH3xXlU4hi1aVrPzLG_7uF-LVSX6" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🖥️</div><div class="subj-name">معمارية الحاسوب</div><div class="subj-en">Computer Arch.</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="subj-name">معمارية الحاسوب</div><div class="subj-en">Computer Arch.</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1WI9vrSx2-enkcBQwaEWbrm9YuJFWUS9n" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">📟</div><div class="subj-name">إلكترونيات 1</div><div class="subj-en">Electronics 1</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="subj-name">إلكترونيات 1</div><div class="subj-en">Electronics 1</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1SG45ESz9GPCxB7qcVTkb4_YkhKz7RSPr" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">📡</div><div class="subj-name">أنظمة و إشارات</div><div class="subj-en">Signals & Systems</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg></div>
+        <div class="subj-name">أنظمة و إشارات</div><div class="subj-en">Signals & Systems</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1c3WnTvyJKJ0BE-XN1sl3U-zEZEz6HcZM" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">📶</div><div class="subj-name">اتصالات و تراسل</div><div class="subj-en">Communications</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.89 15.536S1 14.648 1 13.396C1 12.144 1.89 11.256 1.89 11.256S4.378 8.768 7 8.768c2.622 0 5.11 2.488 5.11 2.488"/><path d="M12.11 11.256S14.6 8.768 17.22 8.768c2.622 0 5.11 2.488 5.11 2.488S23.22 12.144 23.22 13.396c0 1.252-.9 2.14-.9 2.14"/><path d="M7 13.396a1 1 0 1 0 2 0 1 1 0 0 0-2 0"/><path d="M17.22 13.396a1 1 0 1 0 2 0 1 1 0 0 0-2 0"/></svg></div>
+        <div class="subj-name">اتصالات و تراسل</div><div class="subj-en">Communications</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1P5CMyB0sb2Zf7oZOBmgO1-CrH6iZRz3s" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🌐</div><div class="subj-name">أساسيات الشبكات</div><div class="subj-en">Networks</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="subj-name">أساسيات الشبكات</div><div class="subj-en">Networks</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1WB1s-7M3mgN7YXCDQlC88I4jNunOezKN?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🖱️</div><div class="subj-name">نظم التشغيل</div><div class="subj-en">Operating Systems</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="subj-name">نظم التشغيل</div><div class="subj-en">Operating Systems</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/127LouU_PJdwqA6K9KQ0aw6gKVJWdc-Tv?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🗄️</div><div class="subj-name">قواعد البيانات</div><div class="subj-en">Databases</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <div class="subj-name">قواعد البيانات</div><div class="subj-en">Databases</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/15dbXyPQdWh0hy1svAkqnYqlETL697feD?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🗂️</div><div class="subj-name">تراكيب البيانات</div><div class="subj-en">Data Structures</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div>
+        <div class="subj-name">تراكيب البيانات</div><div class="subj-en">Data Structures</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1Dsz6Oko7gJ9nENBxFkRLaZkUIuY1T_IC?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🔌</div><div class="subj-name">آلات كهربائية 1</div><div class="subj-en">Machines 1</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div class="subj-name">آلات كهربائية 1</div><div class="subj-en">Machines 1</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1LCLVJlhY1AqIkCwvOKlRA3Vr0S8lS32T" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🔣</div><div class="subj-name">تقنيات</div><div class="subj-en">Numerical Methods</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="subj-name">تقنيات عددية</div><div class="subj-en">Numerical Methods</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1FW5R04K77BNpiNwCSvnckTzgoEzwbCsW?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🤖</div><div class="subj-name">ذكاء اصطناعي</div><div class="subj-en">Artificial Intelligence</div><span class="subj-type type-core">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 12l4.65-4.65"/></svg></div>
+        <div class="subj-name">ذكاء اصطناعي</div><div class="subj-en">Artificial Intelligence</div><span class="subj-type type-core">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/152RZDyVg4Psz0erhfMsGKoMymDoX1Z3I?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#f87171">
-        <div class="subj-icon">📈</div><div class="subj-name">اقتصاد هندسي</div><div class="subj-en">Eng. Economics</div><span class="subj-type type-uni">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="subj-name">اقتصاد هندسي</div><div class="subj-en">Eng. Economics</div><span class="subj-type type-uni">إجباري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1-0nlk9c2osvcIRpQc1CDrJZ7XUIIIuwD?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#f87171">
-        <div class="subj-icon">🪖</div><div class="subj-name">علوم عسكرية</div><div class="subj-en">Military Sciences</div><span class="subj-type type-uni">إجباري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="subj-name">علوم عسكرية</div><div class="subj-en">Military Sciences</div><span class="subj-type type-uni">إجباري</span>
       </a>
+
     </div>
   </div>
 
-  <!-- ── السنة الرابعة – تخصص ── -->
+  <!-- ── السنة الرابعة ── -->
   <div class="semester fi">
-    <div class="semester-title"><span class="dot dot-purple"></span>السنة الرابعة · Year 4 </div>
+    <div class="semester-title"><span class="dot dot-purple"></span>السنة الرابعة · Year 4</div>
     <div class="subjects-grid">
+
       <a href="https://drive.google.com/drive/folders/16tevp54s0ujGVuzwNXVZfAIUVR9mWUzp?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
-        <div class="subj-icon">🔐</div><div class="subj-name">أساسيات الأمن السيبراني</div><div class="subj-en">Cyber Fundamentals</div><span class="subj-type type-spec">تخصص</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="subj-name">أساسيات الأمن السيبراني</div><div class="subj-en">Cyber Fundamentals</div><span class="subj-type type-spec">تخصص</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/13GeH-_wH02-yyIy5DNCscqCo2rvo-7w9?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
-        <div class="subj-icon">📡</div><div class="subj-name">بروتوكولات الشبكات</div><div class="subj-en">Network Protocols</div><span class="subj-type type-spec">تخصص</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
+        <div class="subj-name">بروتوكولات الشبكات</div><div class="subj-en">Network Protocols</div><span class="subj-type type-spec">تخصص</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1JPhj218thqIcG9ftf8UcBPNigbbegG1f" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
-        <div class="subj-icon">🕹️</div><div class="subj-name">أنظمة التحكم</div><div class="subj-en">Control Systems</div><span class="subj-type type-spec">تخصص</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
+        <div class="subj-name">أنظمة التحكم</div><div class="subj-en">Control Systems</div><span class="subj-type type-spec">تخصص</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1Z8cynR46O_0QLofChsGwP3PUe1Xf4Knj?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
-        <div class="subj-icon">📶</div><div class="subj-name">شبكات لاسلكية</div><div class="subj-en">Wireless Networks</div><span class="subj-type type-spec">تخصص</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
+        <div class="subj-name">شبكات لاسلكية</div><div class="subj-en">Wireless Networks</div><span class="subj-type type-spec">تخصص</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1sOdiEdOS1H1as42muXIFmN6Ih-BTpDe4?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
-        <div class="subj-icon">☁️</div><div class="subj-name">حوسبة سحابية</div><div class="subj-en">Cloud Computing</div><span class="subj-type type-spec">تخصص</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+        <div class="subj-name">حوسبة سحابية</div><div class="subj-en">Cloud Computing</div><span class="subj-type type-spec">تخصص</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1B39-sn3W-Fx63o719-GNuAT--gKoimMB?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
-        <div class="subj-icon">💻</div><div class="subj-name">برمجة الشبكات</div><div class="subj-en">Network Programming</div><span class="subj-type type-spec">تخصص</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="subj-name">برمجة الشبكات</div><div class="subj-en">Network Programming</div><span class="subj-type type-spec">تخصص</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1yQRWFbRjdfFbo3f5Oeuo-bMUyfA44Fj7?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
-        <div class="subj-icon">🔒</div><div class="subj-name">تشفير</div><div class="subj-en">Cryptography</div><span class="subj-type type-spec">تخصص</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="subj-name">تشفير</div><div class="subj-en">Cryptography</div><span class="subj-type type-spec">تخصص</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1RB6SpC7UlmknZStS2nJ0l2DV71haLLz0?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#a78bfa">
-        <div class="subj-icon">🔍</div><div class="subj-name">تحقيقات رقمية</div><div class="subj-en">Digital Forensics</div><span class="subj-type type-spec">تخصص</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="subj-name">تحقيقات رقمية</div><div class="subj-en">Digital Forensics</div><span class="subj-type type-spec">تخصص</span>
       </a>
+
     </div>
   </div>
 
@@ -417,15 +471,22 @@
   <div class="semester fi">
     <div class="semester-title"><span class="dot dot-amber"></span>مواد اختيارية · Electives</div>
     <div class="subjects-grid">
+
       <a href="https://drive.google.com/drive/folders/191pbWbAXUWRS1ANC917A9rNQVMYDhTIS?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#f59e0b">
-        <div class="subj-icon">📊</div><div class="subj-name">نمذجة الشبكات</div><div class="subj-en">Systems Analysis</div><span class="subj-type type-opt">اختياري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="subj-name">نمذجة الشبكات</div><div class="subj-en">Systems Analysis</div><span class="subj-type type-opt">اختياري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1-XMwEE1Tki0RQJwe0Afoo3UdKR735qrG?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#f59e0b">
-        <div class="subj-icon">📚</div><div class="subj-name">مواضيع خاصة</div><div class="subj-en">Special Topics</div><span class="subj-type type-opt">اختياري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div class="subj-name">مواضيع خاصة</div><div class="subj-en">Special Topics</div><span class="subj-type type-opt">اختياري</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1bX_wIkrNlQ-vyJlPZFrF3Au_gJkijDRE?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#f59e0b">
-        <div class="subj-icon">📱</div><div class="subj-name">إنترنت الأشياء</div><div class="subj-en">IoT</div><span class="subj-type type-opt">اختياري</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <div class="subj-name">إنترنت الأشياء</div><div class="subj-en">IoT</div><span class="subj-type type-opt">اختياري</span>
       </a>
+
     </div>
   </div>
 
@@ -433,76 +494,108 @@
   <div class="semester fi">
     <div class="semester-title"><span class="dot dot-coral"></span>المختبرات · Labs</div>
     <div class="subjects-grid">
+
       <a href="https://drive.google.com/drive/folders/1viYYyuxtF68qyudx8zqe1CSUtDdoLjDD" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🔬</div><div class="subj-name">مختبر فيزياء</div><div class="subj-en">Physics Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
+        <div class="subj-name">مختبر فيزياء</div><div class="subj-en">Physics Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
-        <a href="https://drive.google.com/drive/folders/1jlkVstfSYA-rU0Iue2lFiamT_PegEaF0" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">📐</div><div class="subj-name">رسم هندسي</div><div class="subj-en">Engineering Drawing</div><span class="subj-type type-lab">مختبر</span>
+
+      <a href="https://drive.google.com/drive/folders/1jlkVstfSYA-rU0Iue2lFiamT_PegEaF0" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+        <div class="subj-name">رسم هندسي</div><div class="subj-en">Engineering Drawing</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/19iD1q-SRdI-r_E8cZzbfY462hJgTycSm" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🔧</div><div class="subj-name">مشغل</div><div class="subj-en">Workshop</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div class="subj-name">مشغل</div><div class="subj-en">Workshop</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1ceZy3CUahNxYznnihFyzWd9a_o8i9QCd" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🧪</div><div class="subj-name">مختبر كيمياء</div><div class="subj-en">Chemistry Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
+        <div class="subj-name">مختبر كيمياء</div><div class="subj-en">Chemistry Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1q5tRYLNSwuQjmO7MJ_TtMHzP6O99X6-q" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🔗</div><div class="subj-name">مختبر منطق</div><div class="subj-en">Logic Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
+        <div class="subj-name">مختبر منطق</div><div class="subj-en">Logic Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1XkdEBXiyT6Gx0P7BFHZBXA1NJh32pT0s" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">⚡</div><div class="subj-name">مختبر دوائر</div><div class="subj-en">Circuits Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="13 2 13 9 20 9"/><path d="M20 14.5V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9"/></svg></div>
+        <div class="subj-name">مختبر دوائر</div><div class="subj-en">Circuits Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1TPzQ_5mWRjUXLqMi9-Iu6U7Vq0ccEjmO" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🗂️</div><div class="subj-name">مختبر تراكيب البيانات</div><div class="subj-en">Data Struct. Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div>
+        <div class="subj-name">مختبر تراكيب البيانات</div><div class="subj-en">Data Struct. Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1n1lgVtsBSrSyPBClFYa6369YY_nU2mSR" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">⚙️</div><div class="subj-name">مختبر أسمبلي</div><div class="subj-en">Assembly Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+        <div class="subj-name">مختبر أسمبلي</div><div class="subj-en">Assembly Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/u/0/folders/181JCD7SiCIVdijlz-4WRYX4QP3HXc2rq" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🖥️</div><div class="subj-name">مختبر معمارية</div><div class="subj-en">Arch. Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="subj-name">مختبر معمارية</div><div class="subj-en">Arch. Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1BJ0KWtzcyyigzvurQWV1NLhCU7ixk-12?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🌐</div><div class="subj-name">مختبر شبكات</div><div class="subj-en">Networks Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="subj-name">مختبر شبكات</div><div class="subj-en">Networks Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1gKOHs3PwkZzemAVG3oxbQv0z5p51DTwO" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🕹️</div><div class="subj-name">مختبر تحكم</div><div class="subj-en">Control Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
+        <div class="subj-name">مختبر تحكم</div><div class="subj-en">Control Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1UKctd1Nr4GmOufK6GcCjZqW-zMZRCcIi" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">📟</div><div class="subj-name">مختبر إلكترونيات</div><div class="subj-en">Electronics Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="subj-name">مختبر إلكترونيات</div><div class="subj-en">Electronics Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1z5bk_7yJgUIHiMgKyNGNiFE635PoIpTG?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🗄️</div><div class="subj-name">مختبر قواعد بيانات</div><div class="subj-en">DB Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <div class="subj-name">مختبر قواعد بيانات</div><div class="subj-en">DB Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1f-w5S8Rz6XFzVLANdA_uDyARJHgRkcts?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🔐</div><div class="subj-name">مختبر أمن سيبراني</div><div class="subj-en">Cyber Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="subj-name">مختبر أمن سيبراني</div><div class="subj-en">Cyber Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1e18k5HE36QC-0aBcR8ZiYKCuzL_9xHSr?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">📡</div><div class="subj-name">مختبر بروتوكولات</div><div class="subj-en">Protocols Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
+        <div class="subj-name">مختبر بروتوكولات</div><div class="subj-en">Protocols Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
       <a href="https://drive.google.com/drive/folders/1Pz7eQmMjlb-J4z492AVEn6ioheGpPFe7?usp=drive_link" target="_blank" class="subj-card" style="--card-accent:#00d4aa">
-        <div class="subj-icon">🔍</div><div class="subj-name">مختبر تحقيقات</div><div class="subj-en">Forensics Lab</div><span class="subj-type type-lab">مختبر</span>
+        <div class="subj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="subj-name">مختبر تحقيقات</div><div class="subj-en">Forensics Lab</div><span class="subj-type type-lab">مختبر</span>
       </a>
+
     </div>
   </div>
-<script>
-  function filterCourses() {
-    const q = document.getElementById('courseSearch').value.toLowerCase().trim();
-    const semesters = document.querySelectorAll('.semester');
 
-    semesters.forEach(semester => {
-      const cards = semester.querySelectorAll('.subj-card');
-      let visibleCount = 0;
-
-      cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        const match = text.includes(q);
-        card.style.display = match ? 'flex' : 'none';
-        if (match) visibleCount++;
+  <script>
+    function filterCourses() {
+      const q = document.getElementById('courseSearch').value.toLowerCase().trim();
+      const semesters = document.querySelectorAll('.semester');
+      semesters.forEach(semester => {
+        const cards = semester.querySelectorAll('.subj-card');
+        let visibleCount = 0;
+        cards.forEach(card => {
+          const text = card.innerText.toLowerCase();
+          const match = text.includes(q);
+          card.style.display = match ? 'flex' : 'none';
+          if (match) visibleCount++;
+        });
+        semester.style.display = visibleCount > 0 ? 'block' : 'none';
       });
+    }
+  </script>
 
-      semester.style.display = visibleCount > 0 ? 'block' : 'none';
-    });
-  }
-</script>
   <!-- ── SOCIAL ── -->
   <div class="sec-label fi"><span>CONTACT</span></div>
   <div class="social-row fi">
@@ -524,7 +617,7 @@
 
 <footer>
   <p>© 2026 · Zaid Al-Laham · <span style="color:var(--accent)">Network Security Engineer</span></p>
-  <p style="margin-top:0.35rem;font-size:0.68rem">الحقوق محفوظة للطالب زيد اللحام </p>
+  <p style="margin-top:0.35rem;font-size:0.68rem">الحقوق محفوظة للطالب زيد اللحام</p>
 </footer>
 
 </body>
