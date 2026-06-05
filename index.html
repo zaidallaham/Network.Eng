@@ -26,6 +26,48 @@
       --green:#00d4aa; --amber:#f59e0b; --purple:#a78bfa; --coral:#f87171;
       --teal:#2dd4bf;
     }
+
+    /* ── LIGHT THEME ── */
+[data-theme="light"] {
+  --bg: #f4f7fb; --card: #ffffff; --card2: #eef3f9;
+  --border: rgba(0,85,170,0.12); --border2: rgba(0,85,170,0.28);
+  --accent: #0077cc; --accent2: #0099ee;
+  --text: #0a1830; --text2: #4a5d75; --text3: #8094aa;
+}
+[data-theme="light"] body::before {
+  background-image: linear-gradient(rgba(0,85,170,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,85,170,0.04) 1px,transparent 1px);
+}
+[data-theme="light"] .orb { opacity: 0.07; }
+[data-theme="light"] .sticky-bar { background: rgba(244,247,251,0.85); }
+[data-theme="light"] .hero h1 {
+  background: linear-gradient(135deg,#0a1830 0%,var(--accent) 55%,var(--accent2) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+[data-theme="light"] .btn-cta { color: #fff; box-shadow: 0 4px 18px rgba(0,119,204,0.25); }
+[data-theme="light"] .btn-cta:hover { box-shadow: 0 6px 28px rgba(0,119,204,0.4); }
+[data-theme="light"] .nav-pill { background: rgba(0,119,204,0.06); }
+[data-theme="light"] .nav-pill:hover { background: rgba(0,119,204,0.14); }
+[data-theme="light"] .soc-btn { background: rgba(0,119,204,0.04); }
+[data-theme="light"] .soc-btn:hover { background: rgba(0,119,204,0.1); }
+[data-theme="light"] #btt { box-shadow: 0 4px 18px rgba(0,85,170,0.12); }
+[data-theme="light"] #btt:hover { background: rgba(0,119,204,0.1); }
+[data-theme="light"] .stat { box-shadow: 0 2px 8px rgba(0,85,170,0.04); }
+
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed; top: 1.25rem; right: 1.25rem; z-index: 999;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--card); border: 1px solid var(--border2);
+  color: var(--accent); font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.theme-toggle:hover { transform: translateY(-2px); border-color: var(--accent); }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+[data-theme="light"] .theme-toggle .icon-sun { display: block; }
+[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+    
     *{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
@@ -251,7 +293,11 @@
   </style>
 </head>
 <body>
-
+  
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="تبديل الوضع">
+  <span class="icon-moon">🌙</span>
+  <span class="icon-sun">☀️</span>
+</button>
 <!-- Blog promo popup -->
 <div class="blog-popup-overlay" id="blogPopupOverlay" onclick="closeBlogPopup(event)">
   <div class="blog-popup" onclick="event.stopPropagation()">
@@ -811,7 +857,24 @@ function closeBlogPopup(e) {
     document.getElementById('noResults').style.display = totalVisible === 0 ? 'block' : 'none';
     updateCounts();
   }
-
+<script>
+(function() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+})();
+function toggleTheme() {
+  const html = document.documentElement;
+  const isLight = html.getAttribute('data-theme') === 'light';
+  if (isLight) {
+    html.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    html.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+  }
+}
+</script>
+  
   // ── BACK TO TOP ──
   const btt = document.getElementById('btt');
   window.addEventListener('scroll', () => btt.classList.toggle('show', window.scrollY > 400));
