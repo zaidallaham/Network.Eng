@@ -742,12 +742,12 @@
 
 <script>
 
- // Blog promo popup — shows once per visitor
+// Blog promo popup — shows once per session
 (function() {
   const POPUP_KEY = 'blog_popup_seen';
   const overlay = document.getElementById('blogPopupOverlay');
 
-  if (localStorage.getItem(POPUP_KEY)) return;
+  if (sessionStorage.getItem(POPUP_KEY)) return;
 
   setTimeout(() => {
     overlay.classList.add('show');
@@ -757,7 +757,7 @@
 function closeBlogPopup(e) {
   if (e && e.target.id !== 'blogPopupOverlay' && e.type === 'click' && !e.currentTarget.classList.contains('blog-popup-btn') && !e.currentTarget.classList.contains('blog-popup-close')) return;
   document.getElementById('blogPopupOverlay').classList.remove('show');
-  localStorage.setItem('blog_popup_seen', '1');
+  sessionStorage.setItem('blog_popup_seen', '1');
 }
   
   // ── STATS ──
