@@ -26,45 +26,47 @@
       --green:#00d4aa; --amber:#f59e0b; --purple:#a78bfa; --coral:#f87171;
       --teal:#2dd4bf;
     }
-/* ── LIGHT THEME ── */
+/* ── LIGHT THEME (monochrome gray/black, category colors preserved) ── */
 [data-theme="light"] {
   --bg: #dde3ea; --card: #eef1f5; --card2: #d4dae1;
-  --border: rgba(0,85,170,0.12); --border2: rgba(0,85,170,0.28);
-  --accent: #0077cc; --accent2: #0099ee;
-  --text: #0a1830; --text2: #4a5d75; --text3: #6a7c92;
-  /* Darker variants of category colors for readable text on white */
+  --border: rgba(0,0,0,0.12); --border2: rgba(0,0,0,0.28);
+  --accent: #1a1a1a; --accent2: #4a4a4a;
+  --text: #0a0a0a; --text2: #3a3a3a; --text3: #6a6a6a;
+  /* Category colors KEPT — for subjects only */
   --green: #00936e; --purple: #6d28d9; --amber: #b45309;
   --coral: #b91c1c; --teal: #0d8f7e;
 }
 [data-theme="light"] body::before {
-  background-image: linear-gradient(rgba(0,85,170,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,85,170,0.04) 1px,transparent 1px);
+  background-image: linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px);
 }
-[data-theme="light"] .orb { opacity: 0.07; }
+[data-theme="light"] .orb { opacity: 0.05; }
+[data-theme="light"] .orb-1 { background: radial-gradient(circle,#666,transparent); }
+[data-theme="light"] .orb-2 { background: radial-gradient(circle,#666,transparent); }
 
 /* Top nav */
-[data-theme="light"] .nav-pill { background: rgba(0,119,204,0.06); }
-[data-theme="light"] .nav-pill:hover { background: rgba(0,119,204,0.14); }
+[data-theme="light"] .nav-pill { background: rgba(0,0,0,0.05); }
+[data-theme="light"] .nav-pill:hover { background: rgba(0,0,0,0.12); }
 
 /* Hero */
 [data-theme="light"] .hero h1 {
-  background: linear-gradient(135deg,#0a1830 0%,var(--accent) 55%,var(--accent2) 100%);
+  background: linear-gradient(135deg,#000000 0%,#1a1a1a 55%,#5a5a5a 100%);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
 [data-theme="light"] .btn-cta { color: #fff; box-shadow: 0 4px 18px rgba(0,119,204,0.25); }
 [data-theme="light"] .btn-cta:hover { box-shadow: 0 6px 28px rgba(0,119,204,0.4); }
 
 /* Stats */
-[data-theme="light"] .stat { box-shadow: 0 2px 8px rgba(0,85,170,0.04); }
+[data-theme="light"] .stat { box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
 
 /* Sticky search bar */
 [data-theme="light"] .sticky-bar { background: rgba(221,227,234,0.85); }
-    
-/* Count badge — was invisible white-on-white */
-[data-theme="light"] .count-badge {
-  background: rgba(0,85,170,0.06);
-  border-color: rgba(0,85,170,0.15);
-}
+[data-theme="light"] .search-input:focus { box-shadow: 0 0 0 3px rgba(0,0,0,0.08); }
 
+/* Count badge */
+[data-theme="light"] .count-badge {
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.12);
+}
 /* Category header tints — slightly stronger so they're visible on white */
 [data-theme="light"] .cat-fac .cat-header { background: rgba(0,147,110,0.06); border-color: rgba(0,147,110,0.25); }
 [data-theme="light"] .cat-fac .cat-icon { background: rgba(0,147,110,0.12); border-color: rgba(0,147,110,0.25); }
@@ -79,16 +81,16 @@
 [data-theme="light"] .cat-opt .cat-header { background: rgba(109,40,217,0.05); border-color: rgba(109,40,217,0.22); }
 [data-theme="light"] .cat-opt .cat-icon { background: rgba(109,40,217,0.1); border-color: rgba(109,40,217,0.22); }
 
-/* Subject cards — fix dark hover state and invisible icon backgrounds */
+/* Subject cards */
 [data-theme="light"] .subj-card:hover {
   background: #f0f3f7;
   border-color: var(--accent);
-  box-shadow: 0 6px 18px rgba(0,85,170,0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   transform: translateY(-2px);
 }
 [data-theme="light"] .subj-icon {
-  background: rgba(0,85,170,0.05);
-  border-color: rgba(0,85,170,0.1);
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.08);
 }
 
 /* Subject type pills — match category tints */
@@ -99,8 +101,8 @@
 [data-theme="light"] .type-lab { background: rgba(185,28,28,0.09); border-color: rgba(185,28,28,0.22); }
 [data-theme="light"] .type-opt { background: rgba(109,40,217,0.09); border-color: rgba(109,40,217,0.22); }
 
-/* Filter tab active states */
-[data-theme="light"] .ftab.active { background: rgba(0,119,204,0.1); }
+/* Filter tab active states — only "الكل" is monochrome, categories keep color */
+[data-theme="light"] .ftab.active { background: rgba(0,0,0,0.08); }
 [data-theme="light"] .ftab.active.f-fac { background: rgba(0,147,110,0.1); }
 [data-theme="light"] .ftab.active.f-uni { background: rgba(109,40,217,0.09); }
 [data-theme="light"] .ftab.active.f-eng { background: rgba(13,143,126,0.1); }
@@ -109,19 +111,20 @@
 [data-theme="light"] .ftab.active.f-opt { background: rgba(109,40,217,0.09); }
 
 /* Social buttons */
-[data-theme="light"] .soc-btn { background: rgba(0,119,204,0.04); }
-[data-theme="light"] .soc-btn:hover { background: rgba(0,119,204,0.1); }
+[data-theme="light"] .soc-btn { background: rgba(0,0,0,0.04); }
+[data-theme="light"] .soc-btn:hover { background: rgba(0,0,0,0.1); }
 
 /* Back to top */
-[data-theme="light"] #btt { box-shadow: 0 4px 18px rgba(0,85,170,0.12); }
-[data-theme="light"] #btt:hover { background: rgba(0,119,204,0.1); }
+[data-theme="light"] #btt { box-shadow: 0 4px 18px rgba(0,0,0,0.12); }
+[data-theme="light"] #btt:hover { background: rgba(0,0,0,0.08); }
 
 /* Blog popup */
 [data-theme="light"] .blog-popup {
-  box-shadow: 0 20px 60px rgba(0,40,90,0.15), 0 0 60px rgba(0,119,204,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 0 60px rgba(0,0,0,0.05);
 }
-[data-theme="light"] .blog-popup-icon { background: rgba(0,119,204,0.1); }
+[data-theme="light"] .blog-popup-icon { background: rgba(0,0,0,0.06); }
 [data-theme="light"] .blog-popup-btn.primary { color: #ffffff; }
+[data-theme="light"] .blog-popup-btn.primary:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
 
 /* Theme toggle button */
 .theme-toggle {
@@ -904,9 +907,9 @@ html {
   let w = 0, h = 0;
   let isVisible = !document.hidden;
 
-  function getColor() {
+function getColor() {
     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    return isLight ? '0,119,204' : '0,170,255';
+    return isLight ? '40,40,40' : '0,170,255';
   }
 
   function resize() {
