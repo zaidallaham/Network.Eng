@@ -854,26 +854,26 @@ function closeBlogPopup(e) {
       });
       group.style.display = grpVisible > 0 ? 'block' : 'none';
     });
-    document.getElementById('noResults').style.display = totalVisible === 0 ? 'block' : 'none';
+   document.getElementById('noResults').style.display = totalVisible === 0 ? 'block' : 'none';
     updateCounts();
   }
-<script>
-(function() {
-  const saved = localStorage.getItem('theme');
-  if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
-})();
-function toggleTheme() {
-  const html = document.documentElement;
-  const isLight = html.getAttribute('data-theme') === 'light';
-  if (isLight) {
-    html.removeAttribute('data-theme');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    html.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
+
+  // ── THEME TOGGLE ──
+  (function() {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  })();
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isLight = html.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      html.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      html.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+    }
   }
-}
-</script>
   
   // ── BACK TO TOP ──
   const btt = document.getElementById('btt');
