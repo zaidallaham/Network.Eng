@@ -192,11 +192,7 @@
   box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 80px rgba(0,170,255,0.08);
   animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.blog-popup-arrow {
-  position: absolute; top: -42px; left: 50%; transform: translateX(-50%);
-  font-size: 1.8rem; color: var(--accent);
-  animation: bounce 1.5s ease-in-out infinite;
-}
+
 .blog-popup-icon {
   width: 60px; height: 60px; margin: 0 auto 1rem;
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
@@ -250,10 +246,7 @@
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-8px); }
-}
+
     
   </style>
 </head>
@@ -262,15 +255,14 @@
 <!-- Blog promo popup -->
 <div class="blog-popup-overlay" id="blogPopupOverlay" onclick="closeBlogPopup(event)">
   <div class="blog-popup" onclick="event.stopPropagation()">
-    <div class="blog-popup-arrow">↑</div>
     <button class="blog-popup-close" onclick="closeBlogPopup()" aria-label="إغلاق">✕</button>
     <div class="blog-popup-icon">📖</div>
     <h3>تفقّد المدونة التقنية</h3>
-    <p>اقرأ آخر المقالات والنصائح في أمن الشبكات والأنظمة عبر الرابط في الأعلى</p>
-    <p class="en-text">Check out the Technical Blog using the link above ↑</p>
+    <p>اقرأ آخر المقالات والنصائح في أمن الشبكات والأنظمة</p>
+    <p class="en-text">Check out the Technical Blog</p>
     <div class="blog-popup-actions">
       <a href="https://blog-private-9gl.pages.dev/" target="_blank" class="blog-popup-btn primary" onclick="closeBlogPopup()">
-        🚀 افتح المدونة
+         افتح المدونة
       </a>
       <button class="blog-popup-btn secondary" onclick="closeBlogPopup()">لاحقاً</button>
     </div>
@@ -750,20 +742,15 @@
 
 <script>
 
-  // Blog promo popup — shows once per visitor
+ // Blog promo popup — shows once per visitor
 (function() {
   const POPUP_KEY = 'blog_popup_seen';
   const overlay = document.getElementById('blogPopupOverlay');
 
-  // Skip if already seen
   if (localStorage.getItem(POPUP_KEY)) return;
 
-  // Show after 2 seconds so the page settles first
   setTimeout(() => {
     overlay.classList.add('show');
-    // Optional: also highlight the Technical Blog nav pill
-    const blogLink = document.querySelector('a.nav-pill[href*="blog"]');
-    if (blogLink) blogLink.style.boxShadow = '0 0 20px rgba(0,170,255,0.5)';
   }, 2000);
 })();
 
@@ -771,8 +758,6 @@ function closeBlogPopup(e) {
   if (e && e.target.id !== 'blogPopupOverlay' && e.type === 'click' && !e.currentTarget.classList.contains('blog-popup-btn') && !e.currentTarget.classList.contains('blog-popup-close')) return;
   document.getElementById('blogPopupOverlay').classList.remove('show');
   localStorage.setItem('blog_popup_seen', '1');
-  const blogLink = document.querySelector('a.nav-pill[href*="blog"]');
-  if (blogLink) blogLink.style.boxShadow = '';
 }
   
   // ── STATS ──
