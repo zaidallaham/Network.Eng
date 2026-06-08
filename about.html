@@ -49,8 +49,9 @@
   [data-theme="light"] .orb-2 { background: radial-gradient(circle,#666,transparent); }
   [data-theme="light"] .nav-pill { background: rgba(0,0,0,0.05); }
   [data-theme="light"] .nav-pill:hover { background: rgba(0,0,0,0.12); }
-  [data-theme="light"] .hero h1 { background: linear-gradient(135deg,#000000 0%,#1a1a1a 55%,#5a5a5a 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-  [data-theme="light"] .hero-badge { border-color: rgba(0,0,0,0.25); background: rgba(0,0,0,0.04); color: #1a1a1a; }
+[data-theme="light"] .hero h1 { background: linear-gradient(135deg,#000000 0%,#1a1a1a 55%,#5a5a5a 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  [data-theme="light"] .sec-label span,
+  [data-theme="light"] .about-highlight { background: none; -webkit-text-fill-color: var(--accent); color: var(--accent); }  [data-theme="light"] .hero-badge { border-color: rgba(0,0,0,0.25); background: rgba(0,0,0,0.04); color: #1a1a1a; }
   [data-theme="light"] .profile-avatar { background: linear-gradient(135deg, #1a1a1a, #4a4a4a); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
   [data-theme="light"] .about-card,
   [data-theme="light"] .skill-card,
@@ -126,8 +127,7 @@
   .sec-label{display:flex;align-items:center;gap:0.65rem;margin:2.5rem 0 1.25rem;}
   .sec-label::before{content:'';height:1px;flex:1;background:linear-gradient(to right,transparent,var(--border2));}
   .sec-label::after{content:'';height:1px;flex:1;background:linear-gradient(to left,transparent,var(--border2));}
-  .sec-label span{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;color:var(--accent);font-family:'JetBrains Mono',monospace;white-space:nowrap;}
-
+.sec-label span{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;color:var(--accent);font-family:'JetBrains Mono',monospace;white-space:nowrap;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
   /* ABOUT */
   .about-card{ background:var(--card2);border:1px solid var(--border);border-radius:14px; padding:1.5rem;line-height:1.85;color:var(--text2); }
   .about-card p{margin-bottom:0.85rem;font-size:0.92rem;}
@@ -157,8 +157,7 @@
   /* Hero text stays centered even when LTR */
   .hero .pos,
   .hero .tag { text-align: center; }
-  .about-highlight{color:var(--accent);font-weight:700;}
-
+.about-highlight{font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
   /* SKILLS */
   .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;}
   .skill-card{
