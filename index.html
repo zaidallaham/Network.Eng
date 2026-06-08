@@ -489,7 +489,32 @@ html {
   box-shadow: var(--glass-shadow-hover);
 }
 
-    
+    /* ── CARD CORNER ACCENTS (HUD brackets) ── */
+  .cat-header { position: relative; }
+  .cat-header::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 14px; height: 14px;
+    border-top: 1.5px solid var(--accent);
+    border-left: 1.5px solid var(--accent);
+    border-top-left-radius: inherit;
+    opacity: 0.5; pointer-events: none;
+  }
+  .cat-header::after {
+    content: ''; position: absolute; bottom: 0; right: 0;
+    width: 14px; height: 14px;
+    border-bottom: 1.5px solid var(--accent);
+    border-right: 1.5px solid var(--accent);
+    border-bottom-right-radius: inherit;
+    opacity: 0.5; pointer-events: none;
+  }
+  .subj-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 12px; height: 12px;
+    border-top: 1.5px solid var(--accent);
+    border-left: 1.5px solid var(--accent);
+    border-top-left-radius: inherit;
+    opacity: 0.5; pointer-events: none;
+  }
   </style>
 </head>
 <body>
