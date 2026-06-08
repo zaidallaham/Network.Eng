@@ -337,7 +337,18 @@
     border-bottom-right-radius: inherit;
     opacity: 0.5; pointer-events: none;
   }
-  
+  /* ── VIGNETTE ── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.4) 100%);
+  }
+  [data-theme="light"] body::after {
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.12) 100%);
+  }
 </style>
 </head>
 <body>
