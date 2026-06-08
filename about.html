@@ -317,7 +317,26 @@
     background: var(--glass-hover);
     box-shadow: var(--glass-shadow-hover);
   }
-
+/* ── CARD CORNER ACCENTS (HUD brackets) ── */
+  .about-card, .timeline-item, .cert-card, .lang-card { position: relative; }
+  .about-card::before, .timeline-item::before,
+  .cert-card::before, .lang-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 14px; height: 14px;
+    border-top: 1.5px solid var(--accent);
+    border-left: 1.5px solid var(--accent);
+    border-top-left-radius: inherit;
+    opacity: 0.5; pointer-events: none;
+  }
+  .about-card::after, .timeline-item::after,
+  .cert-card::after, .lang-card::after {
+    content: ''; position: absolute; bottom: 0; right: 0;
+    width: 14px; height: 14px;
+    border-bottom: 1.5px solid var(--accent);
+    border-right: 1.5px solid var(--accent);
+    border-bottom-right-radius: inherit;
+    opacity: 0.5; pointer-events: none;
+  }
   
 </style>
 </head>
