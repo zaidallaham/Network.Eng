@@ -123,7 +123,24 @@
   .about-card{ background:var(--card2);border:1px solid var(--border);border-radius:14px; padding:1.5rem;line-height:1.85;color:var(--text2); }
   .about-card p{margin-bottom:0.85rem;font-size:0.92rem;}
   .about-card p:last-child{margin-bottom:0;}
-  .about-card p.en{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--text3);direction:ltr;text-align:left;}
+.about-card p.en{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--text3);direction:ltr;text-align:left;}
+
+  /* Force LTR for all English-only content on this RTL page */
+  .hero .pos,
+  .hero .tag,
+  .timeline-desc,
+  .cert-name,
+  .cert-issuer,
+  .project-desc,
+  .activity-title,
+  .activity-date,
+  .activity-desc,
+  .lang-name,
+  footer p { direction: ltr; text-align: left; unicode-bidi: isolate; }
+
+  /* Hero text stays centered even when LTR */
+  .hero .pos,
+  .hero .tag { text-align: center; }
   .about-highlight{color:var(--accent);font-weight:700;}
 
   /* SKILLS */
