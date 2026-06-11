@@ -108,7 +108,8 @@
   [data-theme="light"] { scrollbar-color: var(--accent) rgba(0,0,0,0.05); }
 
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent;}
+  
   body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
   body::before{ content:'';position:fixed;inset:0; background-image:linear-gradient(rgba(0,170,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,170,255,0.03) 1px,transparent 1px); background-size:44px 44px;pointer-events:none;z-index:0; }
   .orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:0.16;pointer-events:none;z-index:0;}
@@ -321,6 +322,11 @@
     .certs-grid,.activities-grid{grid-template-columns:1fr;}
     .languages-grid{grid-template-columns:repeat(2,1fr);}
     .profile-avatar{width:100px;height:100px;font-size:2.4rem;}
+  }
+  @media(max-width:400px){
+    .wrap{padding-left:1rem;padding-right:1rem;}
+    .skills-grid{grid-template-columns:1fr 1fr;}
+    .timeline-date{font-size:0.7rem;}
   }
 
   /* ── GLASSMORPHISM + AURA SHADOWS ── */
@@ -787,8 +793,13 @@
   }
   window.addEventListener('resize', resize);
   document.addEventListener('visibilitychange', () => { isVisible = !document.hidden; });
-  resize(); loop(); setTimeout(firePulse, 2500);
-})();
+resize();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    draw();
+    window.addEventListener('resize', () => requestAnimationFrame(draw));
+  } else {
+    loop(); setTimeout(firePulse, 2500);
+  }})();
 
 // ── THEME TOGGLE ──
 (function() {
