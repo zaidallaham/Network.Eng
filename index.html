@@ -192,7 +192,8 @@ html {
   scrollbar-color: var(--accent) rgba(0,85,170,0.05);
 }
     *{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent;}
+    
     body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
     body::before{
       content:'';position:fixed;inset:0;
@@ -402,9 +403,16 @@ html {
     .d1{animation-delay:.05s;opacity:0}.d2{animation-delay:.1s;opacity:0}.d3{animation-delay:.18s;opacity:0}
     .d4{animation-delay:.26s;opacity:0}.d5{animation-delay:.34s;opacity:0}
 
-  @media(max-width:600px){
+@media(max-width:600px){
       .stats{grid-template-columns:1fr 1fr;}
       .subjects-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));}
+    }
+  @media(max-width:400px){
+      .wrap{padding-left:1rem;padding-right:1rem;}
+      header{padding-left:1rem;padding-right:1rem;}
+      .stat{padding:0.85rem 0.5rem;}
+      .stat-l{font-size:0.72rem;}
+      .count-badge{font-size:0.66rem;}
     }
 
 /* Blog promo popup */
@@ -1167,9 +1175,14 @@ function getColor() {
 
   window.addEventListener('resize', resize);
   document.addEventListener('visibilitychange', () => { isVisible = !document.hidden; });
-  resize();
-  loop();
-  setTimeout(firePulse, 2500);
+resize();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    draw();
+    window.addEventListener('resize', () => requestAnimationFrame(draw));
+  } else {
+    loop();
+    setTimeout(firePulse, 2500);
+  }
 })();
 
 // Blog promo popup — shows once per session
