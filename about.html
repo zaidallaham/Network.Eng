@@ -21,7 +21,6 @@
   ]
 }
 </script>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQT0HCTYWE"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -304,6 +303,26 @@
   .soc-btn:hover{background:rgba(0,170,255,0.1);color:var(--accent);border-color:var(--accent);transform:translateY(-2px);}
   .soc-btn svg{width:15px;height:15px;flex-shrink:0;}
 
+/* CLICKABLE CARD INDICATORS */
+  .click-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0.5;
+    margin-top: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  a:hover .click-hint {
+    opacity: 1;
+    transform: translateX(4px); /* Slides right on hover */
+  }
+  .click-hint svg {
+    width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2;
+  }
+  
   /* BACK TO TOP */
   #btt{position:fixed;bottom:1.75rem;left:1.75rem;z-index:100;width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:all 0.25s;box-shadow:0 4px 20px rgba(0,0,0,0.4);}
   #btt.show{opacity:1;pointer-events:auto;}
@@ -406,11 +425,8 @@
 
 <div class="wrap">
 
-  <!-- ============= HERO ============= -->
   <section class="hero fi d1">
     <div class="profile-avatar">
-      <!-- To use a real photo: uncomment the line below and place profile.jpg next to this file -->
-      <!-- <img src="profile.jpg" alt="Zaid Al-Laham" /> -->
       ZA
     </div>
     <div class="hero-badge">System Engineer · Cloud · Security</div>
@@ -419,7 +435,6 @@
     <p class="tag">Cloud and Systems Engineer with hands-on experience supporting enterprise infrastructure and security operations. Skilled in virtualization, monitoring, and incident response — with practical exposure to SIEM tools and cloud environments.</p>
   </section>
 
-  <!-- ============= ABOUT ============= -->
   <div class="sec-label fi d2"><span>ABOUT · نبذة</span></div>
   <div class="about-card fi d2">
     <p>السلام عليكم، أنا <span class="about-highlight">زيد اللحام</span>، مهندس أنظمة وبنية تحتية سحابية. تخرجت من جامعة البلقاء التطبيقية - كلية الهندسة التكنولوجية بتخصص هندسة أنظمة الحاسوب وأمن الشبكات، وكنت من ضمن أوائل دفعتي حيث حصلت على المرتبة الثانية على دفعة 2025.</p>
@@ -427,7 +442,6 @@
     <p class="en">Cloud &amp; Systems Engineer with strong interest in Azure and cloud security. Proven ability to troubleshoot, automate, and maintain reliable systems at scale. Built this educational portal to support fellow Network Security Engineering students with organized access to course materials.</p>
   </div>
 
-  <!-- ============= EXPERIENCE ============= -->
   <div class="sec-label fi d3"><span>EXPERIENCE · الخبرة العملية</span></div>
   <div class="timeline fi d3">
 
@@ -460,7 +474,6 @@
 
   </div>
 
-  <!-- ============= EDUCATION ============= -->
   <div class="sec-label fi d4"><span>EDUCATION · التعليم</span></div>
   <div class="timeline fi d4">
 
@@ -474,7 +487,6 @@
 
   </div>
 
-  <!-- ============= SKILLS ============= -->
   <div class="sec-label fi"><span>SKILLS · المهارات التقنية</span></div>
   <div class="skills-grid fi">
 
@@ -563,7 +575,6 @@
 
   </div>
 
-  <!-- ============= CERTIFICATIONS ============= -->
   <div class="sec-label fi"><span>CERTIFICATIONS · الشهادات</span></div>
 <div class="certs-grid fi">
 
@@ -572,6 +583,9 @@
       <div class="cert-info">
         <div class="cert-name">RHCSA — Red Hat Certified System Administrator</div>
         <div class="cert-issuer">RED HAT · MAR 2026</div>
+        <div class="click-hint" style="color: var(--accent);">
+          VIEW CERTIFICATE <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
       </div>
     </a>
 
@@ -580,6 +594,9 @@
       <div class="cert-info">
         <div class="cert-name">CompTIA Security+ SY0-701</div>
         <div class="cert-issuer">UDEMY · JUL 2025</div>
+        <div class="click-hint" style="color: var(--accent);">
+          VIEW CERTIFICATE <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
       </div>
     </a>
 
@@ -588,6 +605,9 @@
       <div class="cert-info">
         <div class="cert-name">CCNA — Cisco Certified Network Associate</div>
         <div class="cert-issuer">CISCO · JUN 2025 – JUN 2028</div>
+        <div class="click-hint" style="color: var(--accent);">
+          VIEW CERTIFICATE <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
       </div>
     </a>
 
@@ -596,14 +616,16 @@
       <div class="cert-info">
         <div class="cert-name">MCSA — Microsoft Certified Systems Administrator</div>
         <div class="cert-issuer">UDEMY · JUN 2025</div>
+        <div class="click-hint" style="color: var(--accent);">
+          VIEW CERTIFICATE <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
       </div>
     </a>
 
   </div>
 
-  <!-- ============= PROJECTS ============= -->
   <div class="sec-label fi"><span>PROJECTS · المشاريع</span></div>
-<a href="https://drive.google.com/drive/folders/12_M45Vqlofnp1G_0L0SHXuJ9h6r1c-8K?usp=drive_link" target="_blank" class="project-card fi" style="display: block; text-decoration: none; color: inherit;">
+<a href="https://drive.google.com/drive/folders/12_M45Vqlofnp1G_0L0SHXuJ9h6r1c-8K?usp=sharing" target="_blank" class="project-card fi" style="display: block; text-decoration: none; color: inherit;">
     <div class="project-header">
       <div class="project-icon"><svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
       <div class="project-info">
@@ -620,9 +642,11 @@
       <li>Built auto-healing scripts to autonomously resolve harmful issues</li>
       <li>Configured Windows Server (AD, DNS, DHCP, GPOs) integrated with the monitoring system</li>
     </ul>
+    <div class="click-hint" style="color: var(--green); margin-top: 1rem;">
+      VIEW DOCUMENTATION <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </div>
   </a>
 
-  <!-- ============= ACTIVITIES ============= -->
   <div class="sec-label fi"><span>ACTIVITIES &amp; ACHIEVEMENTS · الأنشطة والإنجازات</span></div>
   <div class="activities-grid fi">
 
@@ -656,7 +680,7 @@
       <div class="activity-desc">Freely accessible cybersecurity &amp; networking resources</div>
     </div>
 
-<a href="https://www.youtube.com/channel/UCckTrAYMwVeHj5hK3tNlw1A" target="_blank" class="activity-card" style="--act-color:#f87171; text-decoration: none; color: inherit; display: flex;">
+<a href="https://www.youtube.com/channel/UCckTrAYMwVeHj5hK3tNlw1A" target="_blank" class="activity-card" style="--act-color:#f87171; text-decoration: none; color: inherit; display: flex; flex-direction: column;">
       <div class="activity-header">
         <div class="activity-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
         <div class="activity-badge" style="background:rgba(248,113,113,0.12);color:#f87171;border-color:rgba(248,113,113,0.25)">CHANNEL</div>
@@ -664,6 +688,9 @@
       <div class="activity-title">YouTube Channel</div>
       <div class="activity-date">CONTENT CREATOR</div>
       <div class="activity-desc">In-depth lectures on networking concepts</div>
+      <div class="click-hint" style="color: var(--coral);">
+        OPEN CHANNEL <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </div>
     </a>
 
     <div class="activity-card" style="--act-color:#a78bfa">
@@ -678,7 +705,6 @@
 
   </div>
 
-  <!-- ============= LANGUAGES ============= -->
   <div class="sec-label fi"><span>LANGUAGES · اللغات</span></div>
   <div class="languages-grid fi">
 
@@ -694,7 +720,6 @@
 
   </div>
 
-  <!-- ============= CONTACT ============= -->
   <div class="sec-label fi"><span>CONTACT · تواصل</span></div>
   <div class="social-row fi">
     <a href="mailto:eng.zaidallaham@gmail.com" class="soc-btn">
