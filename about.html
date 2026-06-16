@@ -179,13 +179,13 @@
   .avatar-node{transform-box:fill-box;transform-origin:center;}
   .avatar-node.n-bl{animation:nodeGlow 3s ease-in-out infinite 0s;}
   .avatar-node.n-br{animation:nodeGlow 3s ease-in-out infinite 1.5s;}
-  .avatar-node.n-top{animation:nodeSolo 3.5s ease-in-out infinite 0.5s;}
+  .avatar-node.n-top{animation:nodeSolo 2.6s ease-in-out infinite 0.3s;}
   .avatar-core{transform-box:fill-box;transform-origin:center;animation:corePulse 3s ease-in-out infinite;}
   @keyframes avatarBreathe{0%,100%{box-shadow:0 8px 32px rgba(0,170,255,0.25);}50%{box-shadow:0 10px 48px rgba(0,170,255,0.55);}}
   @keyframes avatarOrbit{to{transform:rotate(360deg);}}
   @keyframes signalTravel{0%{stroke-dashoffset:20;}100%{stroke-dashoffset:-44;}}
   @keyframes nodeGlow{0%,56%,84%,100%{filter:none;}70%{filter:drop-shadow(0 0 5px var(--accent2));}}
-  @keyframes nodeSolo{0%,100%{filter:none;}50%{filter:drop-shadow(0 0 4px var(--accent2));}}
+  @keyframes nodeSolo{0%,100%{filter:drop-shadow(0 0 2px var(--accent2));}50%{filter:drop-shadow(0 0 10px var(--accent2)) drop-shadow(0 0 4px var(--accent2));}}
   @keyframes corePulse{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
   @media (prefers-reduced-motion:reduce){.profile-avatar,.profile-avatar::before,.avatar-pulse,.avatar-node,.avatar-core{animation:none!important;}}
   .hero-badge{display:inline-flex;align-items:center;gap:0.45rem;padding:0.3rem 0.9rem;border-radius:50px;border:1px solid rgba(0,212,170,0.3);background:rgba(0,212,170,0.05);color:var(--green);font-size:0.72rem;font-weight:700;letter-spacing:0.06em;margin-bottom:1.1rem;font-family:'JetBrains Mono',monospace;}
@@ -492,7 +492,7 @@
           <circle class="avatar-node n-top" cx="32" cy="12" r="6.6"/>
           <circle class="avatar-node n-bl" cx="13" cy="49" r="6.6"/>
           <circle class="avatar-node n-br" cx="51" cy="49" r="6.6"/>
-          <circle class="avatar-core" cx="32" cy="33" r="5.6"/>
+          <circle class="avatar-core" cx="32" cy="33" r="5.6" fill="#0a1426" stroke="#00e5ff" stroke-width="1.4"/>
         </g>
       </svg>
     </div>
