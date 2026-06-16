@@ -172,20 +172,20 @@
     animation:avatarOrbit 5s linear infinite;
   }
   .profile-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
-  .avatar-rail{opacity:0.5;}
+.avatar-rail{opacity:0.5;}
   .avatar-pulse{stroke:var(--accent2);stroke-width:3.4;stroke-linecap:round;fill:none;stroke-dasharray:4 80;filter:drop-shadow(0 0 2.5px var(--accent2));}
-  .avatar-pulse.p1{animation:signalTravel 3s linear infinite 0s;}
-  .avatar-pulse.p2{animation:signalTravel 3s linear infinite 1s;}
-  .avatar-pulse.p3{animation:signalTravel 3s linear infinite 2s;}
+  .avatar-pulse.pL{animation:signalTravel 3s linear infinite 0s;}
+  .avatar-pulse.pR{animation:signalTravel 3s linear infinite 1.5s;}
   .avatar-node{transform-box:fill-box;transform-origin:center;}
-  .avatar-node.n1{animation:nodeGlow 3s ease-in-out infinite 0s;}
-  .avatar-node.n2{animation:nodeGlow 3s ease-in-out infinite 1s;}
-  .avatar-node.n3{animation:nodeGlow 3s ease-in-out infinite 2s;}
+  .avatar-node.n-bl{animation:nodeGlow 3s ease-in-out infinite 0s;}
+  .avatar-node.n-br{animation:nodeGlow 3s ease-in-out infinite 1.5s;}
+  .avatar-node.n-top{animation:nodeSolo 3.5s ease-in-out infinite 0.5s;}
   .avatar-core{transform-box:fill-box;transform-origin:center;animation:corePulse 3s ease-in-out infinite;}
   @keyframes avatarBreathe{0%,100%{box-shadow:0 8px 32px rgba(0,170,255,0.25);}50%{box-shadow:0 10px 48px rgba(0,170,255,0.55);}}
   @keyframes avatarOrbit{to{transform:rotate(360deg);}}
-  @keyframes signalTravel{0%{stroke-dashoffset:20;}100%{stroke-dashoffset:-40;}}
-  @keyframes nodeGlow{0%,55%,85%,100%{filter:none;}67%{filter:drop-shadow(0 0 5px var(--accent2));}}
+  @keyframes signalTravel{0%{stroke-dashoffset:20;}100%{stroke-dashoffset:-44;}}
+  @keyframes nodeGlow{0%,56%,84%,100%{filter:none;}70%{filter:drop-shadow(0 0 5px var(--accent2));}}
+  @keyframes nodeSolo{0%,100%{filter:none;}50%{filter:drop-shadow(0 0 4px var(--accent2));}}
   @keyframes corePulse{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
   @media (prefers-reduced-motion:reduce){.profile-avatar,.profile-avatar::before,.avatar-pulse,.avatar-node,.avatar-core{animation:none!important;}}
   .hero-badge{display:inline-flex;align-items:center;gap:0.45rem;padding:0.3rem 0.9rem;border-radius:50px;border:1px solid rgba(0,212,170,0.3);background:rgba(0,212,170,0.05);color:var(--green);font-size:0.72rem;font-weight:700;letter-spacing:0.06em;margin-bottom:1.1rem;font-family:'JetBrains Mono',monospace;}
@@ -481,19 +481,17 @@
 <div class="profile-avatar">
 <svg class="avatar-graph" width="62" height="62" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Zaid Allaham">
         <g class="avatar-rail" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round">
-          <line x1="32" y1="33" x2="32" y2="15"/>
-          <line x1="32" y1="33" x2="17" y2="46"/>
-          <line x1="32" y1="33" x2="47" y2="46"/>
+          <line x1="32" y1="33" x2="13" y2="49"/>
+          <line x1="32" y1="33" x2="51" y2="49"/>
         </g>
         <g>
-          <line class="avatar-pulse p1" x1="32" y1="33" x2="32" y2="15"/>
-          <line class="avatar-pulse p2" x1="32" y1="33" x2="17" y2="46"/>
-          <line class="avatar-pulse p3" x1="32" y1="33" x2="47" y2="46"/>
+          <line class="avatar-pulse pL" x1="32" y1="33" x2="13" y2="49"/>
+          <line class="avatar-pulse pR" x1="32" y1="33" x2="51" y2="49"/>
         </g>
         <g fill="#ffffff">
-          <circle class="avatar-node n1" cx="32" cy="15" r="6.6"/>
-          <circle class="avatar-node n2" cx="17" cy="46" r="6.6"/>
-          <circle class="avatar-node n3" cx="47" cy="46" r="6.6"/>
+          <circle class="avatar-node n-top" cx="32" cy="12" r="6.6"/>
+          <circle class="avatar-node n-bl" cx="13" cy="49" r="6.6"/>
+          <circle class="avatar-node n-br" cx="51" cy="49" r="6.6"/>
           <circle class="avatar-core" cx="32" cy="33" r="5.6"/>
         </g>
       </svg>
