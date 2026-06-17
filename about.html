@@ -154,7 +154,7 @@
 
   /* HERO */
   .hero{text-align:center;padding:2.5rem 1rem 2rem;}
-.profile-avatar{
+  .profile-avatar{
     width:120px;height:120px;border-radius:50%;
     background:linear-gradient(135deg,var(--accent),#0055cc);
     margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;
@@ -166,13 +166,14 @@
   }
   .profile-avatar::before{
     content:'';position:absolute;inset:-9px;border-radius:50%;pointer-events:none;
-    background:conic-gradient(from 0deg, transparent 0deg 232deg, var(--accent2) 322deg, var(--accent) 358deg, transparent 360deg);
+    background:conic-gradient(from 0deg, transparent 0deg 236deg, var(--accent2) 326deg, var(--accent) 358deg, transparent 360deg);
+    opacity:0.85;
     -webkit-mask:radial-gradient(circle 69px at center, transparent 60px, #000 61px);
     mask:radial-gradient(circle 69px at center, transparent 60px, #000 61px);
-    animation:avatarOrbit 5s linear infinite;
+    animation:avatarOrbit 6s linear infinite;
   }
   .profile-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
-.avatar-graph{animation:graphIn 0.7s ease-out both;}
+  .avatar-graph{animation:graphIn 0.7s ease-out both;}
   .avatar-rail{opacity:0.45;}
   .avatar-pulse{stroke:var(--accent2);stroke-width:3.4;stroke-linecap:round;fill:none;stroke-dasharray:4 100;filter:drop-shadow(0 0 3px var(--accent2));}
   .avatar-pulse.pL{animation:signalTravel 3.2s linear infinite 0.3s;}
@@ -485,6 +486,7 @@
 
 <div class="wrap">
 
+  <section class="hero fi d1">
 <div class="profile-avatar">
       <svg class="avatar-graph" width="62" height="62" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Zaid Allaham" style="overflow:visible">
         <g class="avatar-rail" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round">
