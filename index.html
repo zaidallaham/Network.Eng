@@ -564,6 +564,49 @@ html {
   [data-theme="light"] body::after {
     background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.22) 100%);
   }
+    .profile-avatar{
+    width:120px;height:120px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),#0055cc);
+    margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;
+    font-size:2.8rem;font-weight:900;color:#fff;font-family:'Cairo',sans-serif;
+    border:3px solid var(--card);position:relative;
+    box-shadow:0 8px 32px rgba(0,170,255,0.25);
+    animation:avatarBreathe 4s ease-in-out infinite;
+  }
+  .profile-avatar::before{
+    content:'';position:absolute;inset:-9px;border-radius:50%;pointer-events:none;
+    background:conic-gradient(from 0deg, transparent 0deg 236deg, var(--accent2) 326deg, var(--accent) 358deg, transparent 360deg);
+    opacity:0.85;
+    -webkit-mask:radial-gradient(circle 69px at center, transparent 60px, #000 61px);
+    mask:radial-gradient(circle 69px at center, transparent 60px, #000 61px);
+    animation:avatarOrbit 6s linear infinite;
+  }
+  .avatar-graph{animation:graphIn 0.7s ease-out both;}
+  .avatar-rail{opacity:0.45;}
+  .avatar-pulse{stroke:var(--accent2);stroke-width:3.4;stroke-linecap:round;fill:none;stroke-dasharray:4 100;filter:drop-shadow(0 0 3px var(--accent2));}
+  .avatar-pulse.pL{animation:signalTravel 3.2s linear infinite 0.3s;}
+  .avatar-pulse.pR{animation:signalTravel 3.2s linear infinite 1.8s;}
+  .avatar-node{transform-box:fill-box;transform-origin:center;}
+  .avatar-node.n-bl{animation:nodeGlow 3.2s ease-in-out infinite 0.3s;}
+  .avatar-node.n-br{animation:nodeGlow 3.2s ease-in-out infinite 1.8s;}
+  .avatar-node.n-top{animation:nodeSolo 3.2s ease-in-out infinite 0s;}
+  .avatar-core{transform-box:fill-box;transform-origin:center;animation:corePulse 3.2s ease-in-out infinite;}
+  .avatar-ripple{stroke:var(--accent2);stroke-width:1.6;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;}
+  .avatar-ripple.rp-top{animation:ping 3.2s ease-out infinite 0s;}
+  .avatar-ripple.rp-bl{animation:ripple 3.2s ease-out infinite 2.4s;}
+  .avatar-ripple.rp-br{animation:ripple 3.2s ease-out infinite 0.7s;}
+  @keyframes graphIn{0%{opacity:0;transform:scale(0.9);}100%{opacity:1;transform:scale(1);}}
+  @keyframes avatarBreathe{0%,100%{box-shadow:0 8px 32px rgba(0,170,255,0.25);}50%{box-shadow:0 10px 48px rgba(0,170,255,0.55);}}
+  @keyframes avatarOrbit{to{transform:rotate(360deg);}}
+  @keyframes signalTravel{0%{stroke-dashoffset:28;}100%{stroke-dashoffset:-52;}}
+  @keyframes nodeGlow{0%,50%,82%,100%{filter:none;}66%{filter:drop-shadow(0 0 6px var(--accent2));}}
+  @keyframes nodeSolo{0%,100%{filter:drop-shadow(0 0 2px var(--accent2));}50%{filter:drop-shadow(0 0 9px var(--accent2)) drop-shadow(0 0 3px var(--accent2));}}
+  @keyframes corePulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 1px var(--accent2));}50%{transform:scale(1.12);filter:drop-shadow(0 0 4px var(--accent2));}}
+  @keyframes ripple{0%{transform:scale(0.55);opacity:0;}12%{opacity:0.65;}45%{transform:scale(2.2);opacity:0;}100%{transform:scale(2.2);opacity:0;}}
+  @keyframes ping{0%{transform:scale(0.5);opacity:0;}10%{opacity:0.5;}50%{transform:scale(2.9);opacity:0;}100%{transform:scale(2.9);opacity:0;}}
+  [data-theme="light"] .profile-avatar{background:linear-gradient(135deg,#1a1a1a,#4a4a4a);box-shadow:0 8px 24px rgba(0,0,0,0.15);}
+  @media (max-width:600px){.profile-avatar{width:100px;height:100px;}}
+  @media (prefers-reduced-motion:reduce){.avatar-graph,.profile-avatar,.profile-avatar::before,.avatar-pulse,.avatar-node,.avatar-core,.avatar-ripple{animation:none!important;}.avatar-pulse{opacity:0;}}
   </style>
 </head>
 <body>
@@ -644,7 +687,30 @@ html {
 
 <div class="wrap">
 
-  <section class="hero fi d1">
+<section class="hero fi d1">
+    <div class="profile-avatar">
+      <svg class="avatar-graph" width="62" height="62" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Zaid Allaham" style="overflow:visible">
+        <g class="avatar-rail" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round">
+          <line x1="32" y1="33" x2="13" y2="49"/>
+          <line x1="32" y1="33" x2="51" y2="49"/>
+        </g>
+        <g>
+          <line class="avatar-pulse pL" x1="32" y1="33" x2="13" y2="49"/>
+          <line class="avatar-pulse pR" x1="32" y1="33" x2="51" y2="49"/>
+        </g>
+        <g class="avatar-rings" fill="none">
+          <circle class="avatar-ripple rp-top" cx="32" cy="12" r="6.6"/>
+          <circle class="avatar-ripple rp-bl" cx="13" cy="49" r="6.6"/>
+          <circle class="avatar-ripple rp-br" cx="51" cy="49" r="6.6"/>
+        </g>
+        <g fill="#ffffff">
+          <circle class="avatar-node n-top" cx="32" cy="12" r="6.6"/>
+          <circle class="avatar-node n-bl" cx="13" cy="49" r="6.6"/>
+          <circle class="avatar-node n-br" cx="51" cy="49" r="6.6"/>
+          <circle class="avatar-core" cx="32" cy="33" r="5.6" fill="#0a1426" stroke="#00e5ff" stroke-width="1.4"/>
+        </g>
+      </svg>
+    </div>
     <div class="hero-badge">تجميعات مواد و دورات هندسة أمن الشبكات</div>
     <h2>زيد اللحام · Zaid Al-Laham</h2>
     <p class="pos">Network Security Engineer</p>
