@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Primary meta -->
-  <title>Zaid Allaham — System &amp; Network Security Engineer</title>
-  <meta name="description" content="Zaid Allaham — System &amp; Network Security Engineer. RHCSA, Security+, CCNA, and MCSA certified." />
-  <meta name="author" content="Zaid Allaham" />
+  <title>Zaid Al-Laham — System &amp; Network Security Engineer</title>
+  <meta name="description" content="Zaid Al-Laham (زيد اللحام) — System &amp; Network Security Engineer. RHCSA and CCNA certified, working on enterprise cloud infrastructure." />
+  <meta name="author" content="Zaid Al-Laham" />
   <meta name="theme-color" content="#0a0f1e" />
-  <link rel="canonical" href="https://zaidallaham.com/about.html" />
+  <link rel="canonical" href="https://zaidallaham.com/about" />
 
   <!-- Icons -->
   <link rel="icon" type="image/svg+xml" href="https://zaidallaham.com/favicon.svg" />
@@ -19,10 +19,10 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="profile" />
-  <meta property="og:site_name" content="Zaid Allaham" />
+  <meta property="og:site_name" content="Zaid Al-Laham" />
   <meta property="og:title" content="زيد اللحام — System &amp; Network Security Engineer" />
-  <meta property="og:description" content="مهندس أمن الأنظمة والشبكات — حاصل على RHCSA و Security+ و CCNA و MCSA." />
-  <meta property="og:url" content="https://zaidallaham.com/about.html" />
+  <meta property="og:description" content="مهندس أمن الأنظمة والشبكات — حاصل على شهادتي RHCSA و CCNA." />
+  <meta property="og:url" content="https://zaidallaham.com/about" />
   <meta property="og:image" content="https://zaidallaham.com/og-about.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -32,22 +32,66 @@
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="زيد اللحام — System &amp; Network Security Engineer" />
-  <meta name="twitter:description" content="مهندس أمن الأنظمة والشبكات — حاصل على RHCSA و Security+ و CCNA و MCSA." />
+  <meta name="twitter:description" content="مهندس أمن الأنظمة والشبكات — حاصل على شهادتي RHCSA و CCNA." />
   <meta name="twitter:image" content="https://zaidallaham.com/og-about.png" />
 
   <!-- Structured data -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Zaid Allaham",
-  "url": "https://zaidallaham.com/about.html",
-  "jobTitle": "System & Network Security Engineer",
-  "worksFor": { "@type": "Organization", "name": "STS ZainTECH" },
-  "sameAs": [
-    "https://www.linkedin.com/in/zaid-al-laham/",
-    "https://www.youtube.com/channel/UCckTrAYMwVeHj5hK3tNlw1A"
-  ]
+  "@type": "ProfilePage",
+  "@id": "https://zaidallaham.com/about#page",
+  "url": "https://zaidallaham.com/about",
+  "name": "Zaid Al-Laham — System & Network Security Engineer",
+  "inLanguage": ["ar", "en"],
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "https://zaidallaham.com/about#person",
+    "name": "Zaid Al-Laham",
+    "alternateName": ["زيد اللحام", "Zaid Allaham"],
+    "url": "https://zaidallaham.com/about",
+    "image": "https://zaidallaham.com/og-about.png",
+    "email": "mailto:eng.zaidallaham@gmail.com",
+    "jobTitle": "System & Network Security Engineer",
+    "worksFor": { "@type": "Organization", "name": "STS ZainTECH" },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Al-Balqa Applied University",
+      "alternateName": "جامعة البلقاء التطبيقية"
+    },
+    "address": { "@type": "PostalAddress", "addressLocality": "Amman", "addressCountry": "JO" },
+    "knowsLanguage": ["ar", "en"],
+    "knowsAbout": [
+      "Network Security", "Cloud Infrastructure", "VMware vSphere", "Linux System Administration",
+      "Windows Server", "Cisco Networking", "Fortinet", "SIEM", "Zabbix", "Backup and Disaster Recovery"
+    ],
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "RHCSA — Red Hat Certified System Administrator",
+        "credentialCategory": "certification",
+        "recognizedBy": { "@type": "Organization", "name": "Red Hat" }
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "CCNA — Cisco Certified Network Associate",
+        "credentialCategory": "certification",
+        "recognizedBy": { "@type": "Organization", "name": "Cisco" }
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Bachelor of Computer Systems & Network Security Engineering",
+        "credentialCategory": "degree",
+        "recognizedBy": { "@type": "CollegeOrUniversity", "name": "Al-Balqa Applied University" }
+      }
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/in/zaid-al-laham/",
+      "https://www.youtube.com/channel/UCckTrAYMwVeHj5hK3tNlw1A",
+      "https://zaidallaham.com/",
+      "https://blog.zaidallaham.com/"
+    ]
+  }
 }
 </script>
 
@@ -285,7 +329,7 @@
     content:'▸';position:absolute;left:0;color:var(--accent);font-size:0.7rem;top:0.15rem;
   }
   /* CERTIFICATIONS */
-  .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.65rem;}
+  .certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0.65rem;}
   .cert-card{ background:var(--card2);border:1px solid var(--border);border-radius:12px; padding:0.9rem;display:flex;align-items:center;gap:0.7rem;transition:all 0.2s; }
   .cert-card:hover{border-color:var(--border2);transform:translateY(-2px);background:#111f3a;}
   .cert-icon{ width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center; background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);flex-shrink:0; }
@@ -474,11 +518,11 @@
 
 <header>
   <nav class="top-nav fi">
-    <a href="https://blog-private-9gl.pages.dev/" class="nav-pill">
+    <a href="https://blog.zaidallaham.com/" class="nav-pill">
       <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
       Technical Blog
     </a>
-    <a href="index.html" class="nav-pill">
+    <a href="/" class="nav-pill">
       <svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 0 0 1 1h3m10-11l2 2m-2-2v10a1 1 0 0 1-1 1h-3m-6 0a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1m-6 0h6"/></svg>
       الرئيسية · Home
     </a>
@@ -489,7 +533,7 @@
 
   <section class="hero fi d1">
 <div class="profile-avatar">
-      <svg class="avatar-graph" width="62" height="62" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Zaid Allaham" style="overflow:visible">
+      <svg class="avatar-graph" width="62" height="62" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Zaid Al-Laham" style="overflow:visible">
         <g class="avatar-rail" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round">
           <line x1="32" y1="33" x2="13" y2="49"/>
           <line x1="32" y1="33" x2="51" y2="49"/>
@@ -512,18 +556,18 @@
       </svg>
     </div>
 
-    <div class="hero-badge">Systems & Networks Security Engineer</div>
+    <div class="hero-badge">System &amp; Network Security Engineer</div>
     
     <h1>زيد اللحام · Zaid Al-Laham</h1>
     
-    <p class="tag">Cloud and systems engineer with extensive experience in enterprise infrastructure. Expertise in virtualization, monitoring, and incident response, demonstrating a strong ability to troubleshoot, automate, and maintain scalable systems. Proven track record of enhancing system reliability and operational efficiency.</p>
+    <p class="tag">System and network security engineer with hands-on experience in enterprise cloud infrastructure. Expertise in virtualization, monitoring, and incident response, demonstrating a strong ability to troubleshoot, automate, and maintain scalable systems. Proven track record of enhancing system reliability and operational efficiency.</p>
   </section>
 
   <div class="sec-label fi d2"><span>ABOUT · نبذة</span></div>
   <div class="about-card fi d2">
-    <p>السلام عليكم، أنا <span class="about-highlight">زيد اللحام</span>، مهندس أنظمة وبنية تحتية سحابية. تخرجت من جامعة البلقاء التطبيقية - كلية الهندسة التكنولوجية بتخصص هندسة أنظمة الحاسوب وأمن الشبكات، وكنت من ضمن أوائل دفعتي حيث حصلت على المرتبة الثانية على دفعة 2025.</p>
+    <p>السلام عليكم، أنا <span class="about-highlight">زيد اللحام</span>، مهندس أمن الأنظمة والشبكات، أعمل حالياً في مجال البنية التحتية السحابية. تخرجت من جامعة البلقاء التطبيقية - كلية الهندسة التكنولوجية بتخصص هندسة أنظمة الحاسوب وأمن الشبكات، وكنت من ضمن أوائل دفعتي حيث حصلت على المرتبة الثانية على دفعة 2025.</p>
     <p>اهتمامي يتمحور حول البنية التحتية السحابية، الأمن السيبراني، الأتمتة، والشبكات. أنشأت هذا الموقع كمصدر متكامل يجمع جميع مواد التخصص في مكان واحد، لمساعدة زملائي الطلاب على الوصول للملفات والمحاضرات بسهولة.</p>
-    <p class="en">Cloud &amp; Systems Engineer with strong interest in and cloud infrastructure. Proven ability to troubleshoot, automate, and maintain reliable systems at scale. Built this educational portal to support fellow Network Security Engineering students with organized access to course materials.</p>
+    <p class="en">System &amp; Network Security Engineer with a strong interest in cybersecurity and cloud infrastructure. Proven ability to troubleshoot, automate, and maintain reliable systems at scale. Built this educational portal to support fellow Network Security Engineering students with organized access to course materials.</p>
   </div>
 
   <div class="sec-label fi d3"><span>EXPERIENCE · الخبرة العملية</span></div>
@@ -673,17 +717,6 @@
       </div>
     </a>
 
-    <a href="https://drive.google.com/drive/folders/17WkdC5PA068fsQsnB85pPMngnLFrJzMk?usp=sharing" target="_blank" class="cert-card" style="text-decoration: none; color: inherit; display: flex;">
-      <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
-      <div class="cert-info">
-        <div class="cert-name">CompTIA Security+ SY0-701</div>
-        <div class="cert-issuer">UDEMY · JUL 2025</div>
-        <div class="click-hint" style="color: var(--accent);">
-          VIEW CERTIFICATE <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </div>
-      </div>
-    </a>
-
     <a href="https://drive.google.com/drive/folders/13UpGFXv06DUrECqbBAp98G-KON14D5OV?usp=sharing" target="_blank" class="cert-card" style="text-decoration: none; color: inherit; display: flex;">
       <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
       <div class="cert-info">
@@ -695,13 +728,31 @@
       </div>
     </a>
 
-    <a href="https://drive.google.com/drive/folders/19qymW4ZqTKNdoR4sztXJe5BJtuvvo0iR?usp=sharing" target="_blank" class="cert-card" style="text-decoration: none; color: inherit; display: flex;">
-      <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+    
+
+  </div>
+
+  <div class="sec-label fi"><span>TRAINING · الدورات التدريبية</span></div>
+<div class="certs-grid fi">
+
+    <a href="https://drive.google.com/drive/folders/17WkdC5PA068fsQsnB85pPMngnLFrJzMk?usp=sharing" target="_blank" class="cert-card" style="text-decoration: none; color: inherit; display: flex;">
+      <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
       <div class="cert-info">
-        <div class="cert-name">MCSA — Microsoft Certified Systems Administrator</div>
-        <div class="cert-issuer">UDEMY · JUN 2025</div>
+        <div class="cert-name">CompTIA Security+ (SY0-701) — Exam Preparation Course</div>
+        <div class="cert-issuer">UDEMY · JUL 2025 · COURSE</div>
         <div class="click-hint" style="color: var(--accent);">
-          VIEW CERTIFICATE <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          VIEW COMPLETION <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://drive.google.com/drive/folders/19qymW4ZqTKNdoR4sztXJe5BJtuvvo0iR?usp=sharing" target="_blank" class="cert-card" style="text-decoration: none; color: inherit; display: flex;">
+      <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+      <div class="cert-info">
+        <div class="cert-name">MCSA Windows Server — Administration Course</div>
+        <div class="cert-issuer">UDEMY · JUN 2025 · COURSE</div>
+        <div class="click-hint" style="color: var(--accent);">
+          VIEW COMPLETION <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
       </div>
     </a>
@@ -827,7 +878,7 @@
 </div>
 
 <footer>
-  <p>© 2026 · Zaid Al-Laham · <span style="color:var(--accent)">System Engineer · Cloud Infrastructure</span></p>
+  <p>© 2026 · Zaid Al-Laham · <span style="color:var(--accent)">System &amp; Network Security Engineer</span></p>
   <p style="margin-top:0.35rem;font-size:0.68rem">الحقوق محفوظة</p>
 </footer>
 
