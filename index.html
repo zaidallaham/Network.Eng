@@ -337,7 +337,7 @@ html {
     .btn-cta svg{width:15px;height:15px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:2;}
 
     /* STATS */
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;margin-bottom:0.5rem;}
+    .stats{display:grid;grid-template-columns:repeat(6,1fr);gap:0.75rem;margin-bottom:0.5rem;}
     .stat{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:1rem;text-align:center;}
     .stat-n{font-size:1.65rem;font-weight:900;font-family:'JetBrains Mono',monospace;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
     .stat-l{font-size:0.68rem;color:var(--text3);margin-top:0.3rem;}
@@ -450,7 +450,7 @@ html {
     .d4{animation-delay:.26s;opacity:0}.d5{animation-delay:.34s;opacity:0}
 
 @media(max-width:600px){
-      .stats{grid-template-columns:1fr 1fr;}
+      .stats{grid-template-columns:repeat(3,1fr);}
       .subjects-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));}
     }
   @media(max-width:400px){
@@ -745,8 +745,10 @@ html {
   <div class="stats fi d2">
     <div class="stat"><div class="stat-n" id="stat-fac">0</div><div class="stat-l">كلية إجباري</div></div>
     <div class="stat"><div class="stat-n" id="stat-uni">0</div><div class="stat-l">جامعة إجباري</div></div>
-    <div class="stat"><div class="stat-n" id="stat-spec">0</div><div class="stat-l">تخصصي</div></div>
+    <div class="stat"><div class="stat-n" id="stat-eng">0</div><div class="stat-l">تخصص هندسي</div></div>
+    <div class="stat"><div class="stat-n" id="stat-net">0</div><div class="stat-l">تخصص شبكات</div></div>
     <div class="stat"><div class="stat-n" id="stat-lab">0</div><div class="stat-l">مختبر</div></div>
+    <div class="stat"><div class="stat-n" id="stat-opt">0</div><div class="stat-l">اختياري</div></div>
   </div>
 
   <!-- Sticky search + filters -->
@@ -1321,8 +1323,10 @@ function closeBlogPopup(e) {
   allCards.forEach(c => { if(counts[c.dataset.type]!==undefined) counts[c.dataset.type]++; });
   document.getElementById('stat-fac').textContent = counts.fac;
   document.getElementById('stat-uni').textContent = counts.uni;
-  document.getElementById('stat-spec').textContent = counts.eng + counts.net;
+  document.getElementById('stat-eng').textContent = counts.eng;
+  document.getElementById('stat-net').textContent = counts.net;
   document.getElementById('stat-lab').textContent = counts.lab;
+  document.getElementById('stat-opt').textContent = counts.opt;
 
   // ── COUNT BADGES ──
   function updateCounts() {
